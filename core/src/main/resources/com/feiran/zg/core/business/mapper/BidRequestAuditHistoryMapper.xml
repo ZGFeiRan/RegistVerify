@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.feiran.zg.core.business.mapper.BidRequestAuditHistoryMapper" >
+  <resultMap id="BaseResultMap" type="com.feiran.zg.core.business.domain.BidRequestAuditHistory" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="auditTime" property="auditTime" jdbcType="TIMESTAMP" />
+    <result column="applyTime" property="applyTime" jdbcType="TIMESTAMP" />
+    <result column="bidRequestId" property="bidRequestId" jdbcType="BIGINT" />
+    <result column="auditType" property="auditType" jdbcType="TINYINT" />
+    <association property="applier" column="applier_id" javaType="loginInfo" columnPrefix="ap_">
+      <id column="id" property="id"/>
+      <result column="userName" property="userName"/>
+    </association>
+
+    <association property="auditor" column="auditor_id" javaType="loginInfo" columnPrefix="au_">
+      <id column="id" property="id"/>
+      <result column="userName" property="userName"/>
+    </association>
+  </resultMap>
+
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" >
+    insert into bidrequestaudithistory (state, remark, auditTime, 
+      applyTime, auditor_id, applier_id, 
+      bidRequestId, auditType)
+    values (#{state,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}, #{auditTime,jdbcType=TIMESTAMP}, 
+      #{applyTime,jdbcType=TIMESTAMP}, #{auditor.id,jdbcType=BIGINT}, #{applier.id,jdbcType=BIGINT}, 
+      #{bidRequestId,jdbcType=BIGINT}, #{auditType,jdbcType=TINYINT})
+  </insert>
+
+  <sql id="base_column">
+    h.id, h.state, h.remark, h.auditTime, h.applyTime, h.bidRequestId,
+    h.auditType,ap.id AS ap_id,ap.userName AS ap_userName,au.id AS au_id,au.userName AS au_userName
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+    select <include refid="base_column"/>
+    from bidrequestaudithistory h
+    JOIN loginInfo ap ON h.applier_id = ap.id LEFT JOIN loginInfo au ON h.auditor_id = au.id
+    where h.id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="listAuditHistoryByBidRequestId" resultMap="BaseResultMap">
+    SELECT <include refid="base_column"/>
+    from bidrequestaudithistory h
+    JOIN loginInfo ap ON h.applier_id = ap.id LEFT JOIN loginInfo au ON h.auditor_id = au.id
+    WHERE h.bidRequestId = #{id}
+    ORDER BY h.auditTime
+  </select>
+
+</mapper>

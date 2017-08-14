@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.feiran.zg.core.base.mapper.VedioAuthMapper" >
+  <resultMap id="BaseResultMap" type="com.feiran.zg.core.base.domain.VedioAuth" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="auditTime" property="auditTime" jdbcType="TIMESTAMP" />
+    <result column="applyTime" property="applyTime" jdbcType="TIMESTAMP" />
+
+    <association property="applier" column="applier_id" javaType="loginInfo" columnPrefix="ap_">
+      <id column="id" property="id"/>
+      <result column="userName" property="userName"/>
+    </association>
+
+    <association property="auditor" column="auditor_id" javaType="loginInfo" columnPrefix="au_">
+      <id column="id" property="id"/>
+      <result column="userName" property="userName"/>
+    </association>
+  </resultMap>
+
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" >
+    insert into vedioAuth (state, remark, auditTime, applyTime, auditor_id, applier_id)
+    values (#{state,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}, #{auditTime,jdbcType=TIMESTAMP}, 
+      #{applyTime,jdbcType=TIMESTAMP}, #{auditor.id,jdbcType=BIGINT}, #{applier.id,jdbcType=BIGINT}
+      )
+  </insert>
+
+  <sql id="base_column">
+    va.id, va.state, va.remark, va.auditTime, va.applyTime,au.id AS au_id,au.userName AS au_userName,ap.id AS ap_id,ap.userName AS ap_userName
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" >
+    select <include refid="base_column"/>
+    from vedioAuth va JOIN loginInfo ap ON va.applier_id = ap.id  JOIN loginInfo au ON va.auditor_id = au.id
+    where va.id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <!--高级查询-->
+  <sql id="base_where">
+    <where>
+      <if test="beginDate!=null">
+        AND va.applyTime &gt;= #{beginDate}
+      </if>
+      <if test="endDate!=null">
+        AND va.applyTime &lt;= #{endDate}
+      </if>
+      <if test="state > -1">
+        AND va .state = #{state}
+      </if>
+      <if test="kyeWord!=null">
+        AND ap.userName LIKE concat('%',kyeWord,'%')
+      </if>
+    </where>
+  </sql>
+  <select id="queryForCount" resultType="int">
+    SELECT COUNT(va.id)
+    FROM vedioAuth va JOIN loginInfo ap ON va.applier_id = ap.id
+    <include refid="base_where"/>
+  </select>
+  <select id="queryForListData" resultMap="BaseResultMap">
+    SELECT <include refid="base_column"/>
+    from vedioAuth va JOIN loginInfo ap ON va.applier_id = ap.id  JOIN loginInfo au ON va.auditor_id = au.id
+    <include refid="base_where"/>
+    LIMIT #{start},#{pageSize}
+  </select>
+</mapper>

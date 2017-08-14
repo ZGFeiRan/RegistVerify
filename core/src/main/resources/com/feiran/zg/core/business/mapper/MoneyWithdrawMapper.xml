@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.feiran.zg.core.business.mapper.MoneyWithdrawMapper" >
+  <resultMap id="BaseResultMap" type="com.feiran.zg.core.business.domain.MoneyWithdraw" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="accountNumber" property="accountNumber" jdbcType="VARCHAR" />
+    <result column="bankForkName" property="bankForkName" jdbcType="VARCHAR" />
+    <result column="bankName" property="bankName" jdbcType="VARCHAR" />
+    <result column="accountName" property="accountName" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="chargeFee" property="chargeFee" jdbcType="DECIMAL" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="auditTime" property="auditTime" jdbcType="TIMESTAMP" />
+    <result column="applyTime" property="applyTime" jdbcType="TIMESTAMP" />
+    <association property="applier" column="applier_id" javaType="loginInfo" columnPrefix="ap_">
+      <id column="id" property="id"/>
+      <result column="userName" property="userName"/>
+    </association>
+
+    <association property="auditor" column="auditor_id" javaType="loginInfo" columnPrefix="au_">
+      <id column="id" property="id"/>
+      <result column="userName" property="userName"/>
+    </association>
+  </resultMap>
+
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" >
+    insert into moneywithdraw (accountNumber, bankForkName, bankName, 
+      accountName, amount, chargeFee, 
+      state, remark,
+      auditTime, applyTime, auditor_id, 
+      applier_id)
+    values (#{accountNumber,jdbcType=VARCHAR}, #{bankForkName,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, 
+      #{accountName,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, #{chargeFee,jdbcType=DECIMAL}, 
+      #{state,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR},
+      #{auditTime,jdbcType=TIMESTAMP}, #{applyTime,jdbcType=TIMESTAMP}, #{auditor.id,jdbcType=BIGINT}, 
+      #{applier.id,jdbcType=BIGINT})
+  </insert>
+  <update id="updateByPrimaryKey" >
+    update moneywithdraw
+    set accountNumber = #{accountNumber,jdbcType=VARCHAR},
+      bankForkName = #{bankForkName,jdbcType=VARCHAR},
+      bankName = #{bankName,jdbcType=VARCHAR},
+      accountName = #{accountName,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      chargeFee = #{chargeFee,jdbcType=DECIMAL},
+      state = #{state,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      auditTime = #{auditTime,jdbcType=TIMESTAMP},
+      applyTime = #{applyTime,jdbcType=TIMESTAMP},
+      auditor_id = #{auditor.id,jdbcType=BIGINT},
+      applier_id = #{applier.id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <sql id="base_column">
+    m.id, m.accountNumber, m.bankForkName, m.bankName, m.accountName, m.amount, m.chargeFee,
+    m.state, m.remark, m.auditTime, m.applyTime,
+    ap.id AS ap_id,ap.userName AS ap_userName,au.id AS au_id,au.userName AS au_userName
+  </sql>
+
+  <sql id="base_table">
+    moneywithdraw m JOIN loginInfo ap ON m.applier_id = ap.id LEFT JOIN loginInfo au ON m.auditor_id = au.id
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" >
+    select <include refid="base_column"/>
+    from <include refid="base_table"/>
+    where m.id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <!--高级查询-->
+  <sql id="base_where">
+    <where>
+      <if test="beginDate!=null">
+        AND m.applyTime &gt;= #{beginDate}
+      </if>
+      <if test="endDate!=null">
+        AND m.applyTime &lt;= #{endDate}
+      </if>
+      <if test="state > -1">
+        AND m.state = #{state}
+      </if>
+    </where>
+  </sql>
+
+  <select id="queryForCount" resultType="int">
+    SELECT COUNT(m.id) FROM moneywithdraw m
+    <include refid="base_where"/>
+  </select>
+
+  <select id="queryForListData" resultMap="BaseResultMap">
+    select <include refid="base_column"/>
+    from <include refid="base_table"/>
+    <include refid="base_where"/>
+    LIMIT #{start},#{pageSize}
+  </select>
+</mapper>

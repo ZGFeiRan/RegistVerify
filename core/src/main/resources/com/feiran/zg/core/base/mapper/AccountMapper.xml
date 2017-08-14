@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.feiran.zg.core.base.mapper.AccountMapper" >
+  <resultMap id="BaseResultMap" type="com.feiran.zg.core.base.domain.Account" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="tradePassword" property="tradePassword" jdbcType="VARCHAR" />
+    <result column="usableAmount" property="usableAmount" jdbcType="DECIMAL" />
+    <result column="freezedAmount" property="freezedAmount" jdbcType="DECIMAL" />
+    <result column="borrowLimit" property="borrowLimit" jdbcType="DECIMAL" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="unReceiveInterest" property="unReceiveInterest" jdbcType="DECIMAL" />
+    <result column="unReceivePrincipal" property="unReceivePrincipal" jdbcType="DECIMAL" />
+    <result column="unReturnAmount" property="unReturnAmount" jdbcType="DECIMAL" />
+    <result column="remainBorrowLimit" property="remainBorrowLimit" jdbcType="DECIMAL" />
+    <result column="verity" property="verity" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <insert id="insert">
+    insert into account (id,tradePassword, usableAmount, freezedAmount, 
+      borrowLimit, version, unReceiveInterest, 
+      unReceivePrincipal, unReturnAmount, remainBorrowLimit,verity
+      )
+    values (#{id,jdbcType=BIGINT},#{tradePassword,jdbcType=VARCHAR}, #{usableAmount,jdbcType=DECIMAL}, #{freezedAmount,jdbcType=DECIMAL},
+      #{borrowLimit,jdbcType=DECIMAL}, #{version,jdbcType=INTEGER}, #{unReceiveInterest,jdbcType=DECIMAL}, 
+      #{unReceivePrincipal,jdbcType=DECIMAL}, #{unReturnAmount,jdbcType=DECIMAL}, #{remainBorrowLimit,jdbcType=DECIMAL}
+      ,#{verity,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey">
+    update account
+    set tradePassword = #{tradePassword,jdbcType=VARCHAR},
+      usableAmount = #{usableAmount,jdbcType=DECIMAL},
+      freezedAmount = #{freezedAmount,jdbcType=DECIMAL},
+      borrowLimit = #{borrowLimit,jdbcType=DECIMAL},
+      version = version + 1,
+      unReceiveInterest = #{unReceiveInterest,jdbcType=DECIMAL},
+      unReceivePrincipal = #{unReceivePrincipal,jdbcType=DECIMAL},
+      unReturnAmount = #{unReturnAmount,jdbcType=DECIMAL},
+      remainBorrowLimit = #{remainBorrowLimit,jdbcType=DECIMAL},
+      verity = #{verity,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT} AND version = #{version}
+  </update>
+
+  <sql id="base_column">
+    id, tradePassword, usableAmount, freezedAmount, borrowLimit, version, unReceiveInterest,
+    unReceivePrincipal, unReturnAmount, remainBorrowLimit,verity
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+    select
+    <include refid="base_column"/>
+    from account
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="base_column"/>
+    from account
+  </select>
+
+</mapper>

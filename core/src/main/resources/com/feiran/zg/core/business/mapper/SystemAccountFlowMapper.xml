@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.feiran.zg.core.business.mapper.SystemAccountFlowMapper" >
+  <resultMap id="BaseResultMap" type="com.feiran.zg.core.business.domain.SystemAccountFlow" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="vDate" property="vDate" jdbcType="TIMESTAMP" />
+    <result column="accountType" property="accountType" jdbcType="TINYINT" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="useableAmount" property="useableAmount" jdbcType="DECIMAL" />
+    <result column="freezedAmount" property="freezedAmount" jdbcType="DECIMAL" />
+    <result column="systemAccount_id" property="systemAccountId" jdbcType="BIGINT" />
+
+  </resultMap>
+ 
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" >
+    insert into systemaccountflow (vDate, accountType, amount, 
+      note, useableAmount, freezedAmount, 
+      systemAccount_id)
+    values (#{vDate,jdbcType=TIMESTAMP}, #{accountType,jdbcType=TINYINT}, #{amount,jdbcType=DECIMAL}, 
+      #{note,jdbcType=VARCHAR}, #{useableAmount,jdbcType=DECIMAL}, #{freezedAmount,jdbcType=DECIMAL}, 
+      #{systemAccountId,jdbcType=BIGINT})
+  </insert>
+  
+</mapper>

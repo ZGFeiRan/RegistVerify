@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.feiran.zg.core.base.mapper.UserFileMapper">
+    <resultMap id="BaseResultMap" type="com.feiran.zg.core.base.domain.UserFile">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="state" property="state" jdbcType="TINYINT"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="auditTime" property="auditTime" jdbcType="TIMESTAMP"/>
+        <result column="applyTime" property="applyTime" jdbcType="TIMESTAMP"/>
+        <result column="score" property="score" jdbcType="TINYINT"/>
+        <result column="image" property="image" jdbcType="VARCHAR"/>
+
+        <association property="applier" column="applier_id" javaType="loginInfo" columnPrefix="ap_">
+            <id column="id" property="id"/>
+            <result column="userName" property="userName"/>
+        </association>
+
+        <association property="auditor" column="auditor_id" javaType="loginInfo" columnPrefix="au_">
+            <id column="id" property="id"/>
+            <result column="userName" property="userName"/>
+        </association>
+
+        <association property="fileType" column="fileType_id" javaType="systemDictionaryItem" columnPrefix="ft_">
+            <id column="id" property="id"/>
+            <result column="title" property="title"/>
+        </association>
+    </resultMap>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from userFile
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+    <insert id="insert" parameterType="com.feiran.zg.core.base.domain.UserFile" useGeneratedKeys="true" keyProperty="id">
+    insert into userFile (state, remark, auditTime,
+      applyTime, auditor_id, applier_id,
+      score, image, fileType_id
+      )
+    values (#{state,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}, #{auditTime,jdbcType=TIMESTAMP},
+      #{applyTime,jdbcType=TIMESTAMP}, #{auditor.id,jdbcType=BIGINT}, #{applier.id,jdbcType=BIGINT},
+      #{score,jdbcType=TINYINT}, #{image,jdbcType=VARCHAR}, #{fileType.id,jdbcType=BIGINT}
+      )
+  </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.feiran.zg.core.base.domain.UserFile">
+    update userFile
+    set state = #{state,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      auditTime = #{auditTime,jdbcType=TIMESTAMP},
+      applyTime = #{applyTime,jdbcType=TIMESTAMP},
+      auditor_id = #{auditor.id,jdbcType=BIGINT},
+      applier_id = #{applier.id,jdbcType=BIGINT},
+      score = #{score,jdbcType=TINYINT},
+      image = #{image,jdbcType=VARCHAR},
+      fileType_id = #{fileType.id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+    <sql id="base_column">
+       uf.id, uf.state, uf.remark, uf.auditTime, uf.applyTime, uf.score, uf.image,
+       ap.id AS ap_id,ap.userName AS ap_userName,
+       au.id AS au_id,au.userName AS au_userName,
+       ft.id AS ft_id,ft.title AS ft_title
+  </sql>
+
+    <sql id="base_table">
+         userFile uf
+    JOIN loginInfo ap ON uf.applier_id=ap.id
+    LEFT JOIN loginInfo au ON uf.auditor_id=au.id
+    LEFT JOIN systemDictionaryItem ft ON uf.fileType_id=ft.id
+  </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        SELECT
+        <include refid="base_column"/>
+        FROM
+        <include refid="base_table"/>
+        WHERE uf.id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <select id="listUserFilesByHasSelectType" resultMap="BaseResultMap">
+        SELECT
+        <include refid="base_column"/>
+        FROM
+        <include refid="base_table"/>
+        WHERE uf.applier_id = #{loginInfoId}
+        AND
+        <if test="hasType">
+            uf.fileType_id IS NOT NULL
+        </if>
+        <if test="!hasType">
+            uf.fileType_id IS NULL
+        </if>
+    </select>
+
+    <!--高级查询-->
+    <sql id="base_where">
+        <where>
+            <if test="beginDate!=null">
+                AND uf.applyTime &gt;= #{beginDate}
+            </if>
+            <if test="endDate!=null">
+                AND uf.applyTime &lt;= #{endDate}
+            </if>
+            <if test="state > -1">
+                AND uf.state = #{state}
+            </if>
+            <if test="applierId!=null">
+                AND uf.applier_id = #{applierId}
+            </if>
+            AND uf.fileType_id IS NOT NULL
+        </where>
+    </sql>
+
+    <select id="queryForCount" resultType="int">
+        SELECT COUNT(uf.id) FROM userFile uf
+        <include refid="base_where"/>
+    </select>
+
+    <select id="queryForListData" resultMap="BaseResultMap">
+        SELECT
+        <include refid="base_column"/>
+        FROM
+        <include refid="base_table"/>
+        <include refid="base_where"/>
+        <if test="pageSize>0">
+            LIMIT #{start},#{pageSize}
+        </if>
+    </select>
+</mapper>

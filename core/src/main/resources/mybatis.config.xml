@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--<properties resource="db.properties"/>-->
+
+    <settings>
+        <!--启动懒加载功能-->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!--设置按需加载功能-->
+        <setting name="aggressiveLazyLoading" value="false"/>
+        <!--设置只有调用clone方法的时候才触发懒加载,调用其他方法不触发懒加载-->
+        <setting name="lazyLoadTriggerMethods" value="clone"/>
+    </settings>
+
+</configuration>
