@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.feiran.zg.core.business.mapper.UserBankInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.feiran.zg.core.business.domain.UserBankInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="bankForkName" property="bankForkName" jdbcType="VARCHAR" />
+    <result column="bankName" property="bankName" jdbcType="VARCHAR" />
+    <result column="accountNumber" property="accountNumber" jdbcType="VARCHAR" />
+    <result column="accountName" property="accountName" jdbcType="VARCHAR" />
+
+    <association property="loginInfo" column="loginInfo_id" javaType="loginInfo" columnPrefix="li_">
+      <id column="id" property="id"/>
+      <result column="userName" property="userName"/>
+    </association>
+  </resultMap>
+  
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" >
+    insert into userbankinfo (bankForkName, bankName, accountNumber, 
+      loginInfo_id, accountName)
+    values (#{bankForkName,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, #{accountNumber,jdbcType=VARCHAR}, 
+      #{loginInfo.id,jdbcType=BIGINT}, #{accountName,jdbcType=VARCHAR})
+  </insert>
+
+  
+  <select id="selectByUserId" resultMap="BaseResultMap">
+    select ubk.id, ubk.bankForkName, ubk.bankName, ubk.accountNumber, ubk.accountName,
+    li.id AS li_id,li.userName AS li_userName
+    from userbankinfo ubk JOIN loginInfo li ON ubk.loginInfo_id = li.id
+    where ubk.loginInfo_id = #{userId,jdbcType=BIGINT}
+  </select>
+  
+  
+</mapper>

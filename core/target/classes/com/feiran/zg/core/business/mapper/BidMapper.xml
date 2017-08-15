@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.feiran.zg.core.business.mapper.BidMapper" >
+  <resultMap id="BaseResultMap" type="com.feiran.zg.core.business.domain.Bid" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="actualRate" property="actualRate" jdbcType="DECIMAL" />
+    <result column="availableAmount" property="availableAmount" jdbcType="DECIMAL" />
+    <result column="bidTime" property="bidTime" jdbcType="TIMESTAMP" />
+    <result column="bidRequestTitle" property="bidRequestTitle" jdbcType="VARCHAR" />
+    <result column="bidRequestState" property="bidRequestState" jdbcType="TINYINT" />
+    <result column="bidRequest_id" property="bidRequestId" jdbcType="BIGINT" />
+
+    <association property="bidUser" javaType="loginInfo" columnPrefix="bu_">
+      <id column="id" property="id"/>
+      <result property="userName" column="userName"/>
+    </association>
+  </resultMap>
+
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" >
+    insert into bid (actualRate, availableAmount, bidRequest_id, 
+      bidUser_id, bidTime, bidRequestTitle, bidRequestState)
+    values (#{actualRate,jdbcType=DECIMAL}, #{availableAmount,jdbcType=DECIMAL}, #{bidRequestId,jdbcType=BIGINT},
+      #{bidUser.id,jdbcType=BIGINT}, #{bidTime,jdbcType=TIMESTAMP}, #{bidRequestTitle,jdbcType=VARCHAR}, 
+      #{bidRequestState,jdbcType=TINYINT})
+  </insert>
+
+  <sql id="base_column">
+    b.id, actualRate, availableAmount, bidRequest_id, bidTime, bidRequestTitle,
+    bidRequestState,bu.id AS bu_id,bu.userName AS bu_userName
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" >
+    select
+    from bid b JOIN loginInfo bu ON b.bidUser_id=bu.id
+    where b.id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="selectByBidRequest" resultMap="BaseResultMap" >
+    select <include refid="base_column"/>
+    from bid b JOIN loginInfo bu ON b.bidUser_id=bu.id
+    where b.bidRequest_id = #{id}
+  </select>
+
+  <update id="updateBidsState">
+    UPDATE bid SET bidRequestState = #{state} WHERE bidRequest_id = #{bidRequestId}
+  </update>
+</mapper>

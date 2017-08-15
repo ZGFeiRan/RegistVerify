@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.feiran.zg.core.base.mapper.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.feiran.zg.core.base.domain.UserInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="bitState" property="bitState" jdbcType="BIGINT" />
+    <result column="realName" property="realName" jdbcType="VARCHAR" />
+    <result column="idNumber" property="idNumber" jdbcType="VARCHAR" />
+    <result column="phoneNumber" property="phoneNumber" jdbcType="VARCHAR" />
+    <result column="authScore" property="authScore" jdbcType="INTEGER" />
+    <result column="realAuthId" property="realAuthId" jdbcType="BIGINT" />
+
+    <association property="incomeGrade" column="incomeGrade_id" javaType="systemDictionaryItem" select="com.feiran.zg.core.base.mapper.SystemDictionaryItemMapper.selectByPrimaryKey"/>
+
+    <association property="marriage" column="marriage_id" javaType="systemDictionaryItem" select="com.feiran.zg.core.base.mapper.SystemDictionaryItemMapper.selectByPrimaryKey"/>
+
+    <association property="kidCount" column="kidCount_id" javaType="systemDictionaryItem" select="com.feiran.zg.core.base.mapper.SystemDictionaryItemMapper.selectByPrimaryKey"/>
+
+    <association property="educationBackground" column="educationBackground_id" javaType="systemDictionaryItem" select="com.feiran.zg.core.base.mapper.SystemDictionaryItemMapper.selectByPrimaryKey"/>
+
+    <association property="houseCondition" column="houseCondition_id" javaType="systemDictionaryItem" select="com.feiran.zg.core.base.mapper.SystemDictionaryItemMapper.selectByPrimaryKey"/>
+  </resultMap>
+
+  <insert id="insert">
+    insert into userInfo (id,version, bitState, realName,
+      idNumber, phoneNumber, incomeGrade_id, 
+      marriage_id, kidCount_id, educationBackground_id, 
+      houseCondition_id, email,authScore,realAuthId)
+    values (#{id,jdbcType=BIGINT},0, #{bitState,jdbcType=BIGINT}, #{realName,jdbcType=VARCHAR},
+      #{idNumber,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, #{incomeGrade.id,jdbcType=BIGINT},
+      #{marriage.id,jdbcType=BIGINT}, #{kidCount.id,jdbcType=BIGINT}, #{educationBackground.id,jdbcType=BIGINT},
+      #{houseCondition.id,jdbcType=BIGINT}, #{email,jdbcType=VARCHAR}, #{authScore,jdbcType=INTEGER}, #{realAuthId,jdbcType=BIGINT})
+  </insert>
+  <update id="updateByPrimaryKey">
+    update userInfo
+    set version = version + 1,
+      bitState = #{bitState,jdbcType=BIGINT},
+      realName = #{realName,jdbcType=VARCHAR},
+      idNumber = #{idNumber,jdbcType=VARCHAR},
+      phoneNumber = #{phoneNumber,jdbcType=VARCHAR},
+      incomeGrade_id = #{incomeGrade.id,jdbcType=BIGINT},
+      marriage_id = #{marriage.id,jdbcType=BIGINT},
+      kidCount_id = #{kidCount.id,jdbcType=BIGINT},
+      educationBackground_id = #{educationBackground.id,jdbcType=BIGINT},
+      houseCondition_id = #{houseCondition.id,jdbcType=BIGINT},
+      email = #{email,jdbcType=VARCHAR},
+      realAuthId = #{realAuthId,jdbcType=BIGINT},
+      authScore = #{authScore,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT} AND version = #{version}
+  </update>
+  
+  <sql id="base_column">
+    id, version, bitState, realName, idNumber, phoneNumber, incomeGrade_id, marriage_id,
+    kidCount_id, educationBackground_id, houseCondition_id, email,authScore,realAuthId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+    select
+    <include refid="base_column"/>
+    from userInfo
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+</mapper>

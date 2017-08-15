@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!--开启自动装配解析器(也称为开启注解扫描解析器),即引入了@AutoWired的标签解析器,也引入了@Resource的标签解析器-->
+	<context:annotation-config/>
+
+	<!--开启 组件 扫描-->
+	<context:component-scan base-package="com.feiran.zg.core"/>
+
+	
+	<!-- 1、导入外部文件db.properties -->
+	<context:property-placeholder location="classpath:db.properties,classpath:sms.properties,classpath:email.properties" system-properties-mode="NEVER"/>
+	<!-- 2、配置数据源 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+		<property name="driverClassName" value="${db.driverClassName}"/>
+		<property name="url" value="${db.url}"/>
+		<property name="username" value="${db.username}"/>
+		<property name="password" value="${db.password}"/>
+	</bean>
+
+	<!-- 3、配置sessionFactory -->
+	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!--配置数据源引用-->
+		<property name="dataSource" ref="dataSource"/>
+		<!--添加持久层信息(比如方言等)-->
+		<property name="configLocation" value="classpath:mybatis.config.xml"/>
+		<!--配置别名的类所属的包名-->
+		<property name="typeAliasesPackage" value="com.feiran.zg.core.base.domain,com.feiran.zg.core.business.domain"/>
+		<!--关联映射文件-->
+		<property name="mapperLocations" value="classpath:com/feiran/zg/core/*/mapper/*Mapper.xml"/>
+	</bean>
+
+	<!-- 4、配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<!--关联数据源-->
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<!-- 5、配置事务模板 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true" propagation="SUPPORTS"/>
+			<tx:method name="list*" read-only="true" propagation="SUPPORTS"/>
+			<tx:method name="query*" read-only="true" propagation="SUPPORTS"/>
+			<tx:method name="select*" read-only="true" propagation="SUPPORTS"/>
+			<tx:method name="*" read-only="false" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+
+	<!--引入切面类-->
+	<!--<bean id="logUtil" class="feiran.zg.p2p.base.utils.LogUtil"/>-->
+
+	<!-- 6、AOP配置 -->
+	<aop:config>
+		<!--设置切入点-->
+		<aop:pointcut id="crudPointCut" expression="execution(* com.feiran.zg.core..service.*Service.*(..))"/>
+		<!--事务切面配置-->
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="crudPointCut"/>
+
+		<!--LogUtil切面配置-->
+		<!--<aop:aspect ref="logUtil">-->
+			<!--<aop:after method="writeLog" pointcut-ref="crudPointCut"/>-->
+		<!--</aop:aspect>-->
+	</aop:config>
+
+	<!--扫描mapper接口-->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.feiran.zg.core.*.mapper"/>
+	</bean>
+</beans>

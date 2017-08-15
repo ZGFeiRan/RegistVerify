@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.feiran.zg.core.base.mapper.LoginInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.feiran.zg.core.base.domain.LoginInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="userName" property="userName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+    <result column="userType" property="userType" jdbcType="TINYINT" />
+    <result column="loginTime" property="lastLoginDateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from loginInfo
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+  <insert id="insert" parameterType="com.feiran.zg.core.base.domain.LoginInfo" useGeneratedKeys="true" keyProperty="id" >
+    insert into loginInfo (username, password, state,userType)
+    values (#{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{state,jdbcType=TINYINT}, #{userType,jdbcType=TINYINT}
+      )
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="com.feiran.zg.core.base.domain.LoginInfo" >
+    update loginInfo
+    set username = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      state = #{state,jdbcType=TINYINT}
+      userType = #{userType,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, username, password, state,userType
+    from loginInfo
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, userName, password, state,userType
+    from loginInfo
+  </select>
+
+  <select id="countUserByUserName" resultType="int" >
+    select COUNT(*) from loginInfo WHERE username = #{userName}
+  </select>
+
+   <select id="login" resultMap="BaseResultMap" >
+    select li.id AS id,li.userName AS userName,li.password AS password,li.state AS state,li.userType AS userType,MAX(il.loginTime) AS loginTime from loginInfo li LEFT JOIN ipLog il
+    ON li.userName = il.userName
+    WHERE li.userName = #{userName} AND li.password = #{password} AND li.userType = #{userType}
+  </select>
+
+<select id="queryCountByUserType" resultType="int" >
+    select COUNT(id) from loginInfo WHERE userType = #{userManager}
+  </select>
+
+  <select id="autoComplate" resultType="hashmap">
+    select id,userName from loginInfo WHERE userName LIKE concat(#{keyWord},'%');
+  </select>
+
+</mapper>
