@@ -119,12 +119,12 @@
                                     <table style="width: 100%;height: 100px;">
                                         <tr>
 											<td><span>账户名称：${loginInfo.userName}</span></td>
-                                            <td><span>真实姓名： ${realAuth.realName}</span></td>
-                                            <td><span>性别：${realAuth.sexDisplay}</span></td>
+                                            <#--<td><span>真实姓名： ${realAuth.realName}</span></td>-->
+                                            <#--<td><span>性别：${realAuth.sexDisplay}</span></td>-->
                                         </tr>
                                         <tr>
-                                            <td><span>证件号码： ${realAuth.idNumber}</span></td>
-                                            <td><span>出生日期：${(realAuth.bornDate?string('yyyy-MM-dd'))!''}</span></td>
+                                            <#--<td><span>证件号码： ${realAuth.idNumber}</span></td>-->
+                                            <#--<td><span>出生日期：${(realAuth.bornDate?string('yyyy-MM-dd'))!''}</span></td>-->
 											<td><span>所属医院：${loginInfo.userName}</span></td>
                                         </tr>
                                     </table>
