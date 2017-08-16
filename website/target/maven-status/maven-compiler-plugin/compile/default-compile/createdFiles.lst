@@ -13,6 +13,7 @@ com\feiran\zg\core\website\web\controller\PersonalController.class
 com\feiran\zg\core\website\web\controller\IpLogController.class
 com\feiran\zg\core\website\web\controller\MoneyWithdrawController.class
 com\feiran\zg\core\website\web\controller\SendVerifyCodeController.class
+com\feiran\zg\core\website\web\controller\DoctorController.class
 com\feiran\zg\core\website\web\controller\UserBankInfoController.class
 com\feiran\zg\core\website\web\controller\BaseController.class
 com\feiran\zg\core\website\web\controller\BorrowController.class

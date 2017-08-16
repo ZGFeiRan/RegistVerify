@@ -99,7 +99,58 @@
 					$("#uploadImage2").val(data);
 				}
 			});
-			
+			$("#uploadBtn3").uploadify({
+                auto:true,
+				buttonText:"上传毕业证",
+				fileObjName:"file",
+				fileTypeDesc:"上传毕业证图片",
+				fileTypeExts:"*.gif; *.jpg; *.png",
+				multi:false,
+				swf:"/js/plugins/uploadify/uploadify.swf",
+				uploader:"/realAuthUpload.do",
+				// 覆盖默认的效果
+				overrideEvents:["onUploadSuccess","onSelect"],
+                // 文件上传成功后的回调
+				onUploadSuccess:function(file,data){
+					$("#uploadImg3").attr("src",data);
+					$("#uploadImage3").val(data);
+				}
+			});
+			$("#uploadBtn4").uploadify({
+                auto:true,
+				buttonText:"上传学位证",
+				fileObjName:"file",
+				fileTypeDesc:"上传学位证图片",
+				fileTypeExts:"*.gif; *.jpg; *.png",
+				multi:false,
+				swf:"/js/plugins/uploadify/uploadify.swf",
+				uploader:"/realAuthUpload.do",
+				// 覆盖默认的效果
+				overrideEvents:["onUploadSuccess","onSelect"],
+                // 文件上传成功后的回调
+				onUploadSuccess:function(file,data){
+					$("#uploadImg4").attr("src",data);
+					$("#uploadImage4").val(data);
+				}
+			});
+			$("#uploadBtn5").uploadify({
+                auto:true,
+				buttonText:"上传从医资格证",
+				fileObjName:"file",
+				fileTypeDesc:"上传从医资格证图片",
+				fileTypeExts:"*.gif; *.jpg; *.png",
+				multi:false,
+				swf:"/js/plugins/uploadify/uploadify.swf",
+				uploader:"/realAuthUpload.do",
+				// 覆盖默认的效果
+				overrideEvents:["onUploadSuccess","onSelect"],
+                // 文件上传成功后的回调
+				onUploadSuccess:function(file,data){
+					$("#uploadImg5").attr("src",data);
+					$("#uploadImage5").val(data);
+				}
+			});
+
 			//Ajax提交表单
 			$("#realAuthForm").ajaxForm(function(){
 				$.messager.confirm("提示","实名认证申请提交成功!",function(){
@@ -168,14 +219,14 @@
 						        	<label class="col-sm-4  control-label" for="bornDate">出生日期：</label>
 					        		<div class="col-sm-8">
 						        		<input id="bornDate"  class="form-control" name="bornDate" type="text">
-                                        <label>格式为:"yyyy-MM-dd"，例如:1993-05-04</label>
+                                        <label style="color:#999;">格式为:"yyyy-MM-dd"，例如:1993-05-04</label>
 						        	</div>
 
 						        </div>
 						        <div class="form-group">
-						        	<label class="col-sm-4  control-label" for="address">证件地址：</label>
+						        	<label class="col-sm-4  control-label" for="address">身份证地址：</label>
 					        		<div class="col-sm-8">
-						        		<input id="address" class="form-control" name="address"  type="text" style="max-width: 100%;width:500px;">
+						        		<input placeholder="身份证地址请填写身份证上的地址" id="address" class="form-control" name="address"  type="text" style="max-width: 100%;width:500px;">
 						        	</div>
 						        </div>
 						        
@@ -201,6 +252,34 @@
 					        			<div class="clearfix"></div>
 						        	</div>
 						        </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4  control-label" for="address">证书照片</label>
+                                    <div class="col-sm-8">
+                                        <p class="text-help text-primary"><b style="margin-left: 80px;color:#0000aa;">请上传相关证书的正面清晰照片</b></p>
+                                        <div class="idCardItem">
+                                            <div>
+                                                <a href="javascript:;" id="uploadBtn3" >上传毕业证</a>
+                                            </div>
+                                            <img alt="" src="" class="uploadImg" id="uploadImg3" />
+                                            <input type="hidden" name="image3" id="uploadImage3" />
+                                        </div>
+                                        <div class="idCardItem">
+                                            <div>
+                                                <a href="javascript:;" id="uploadBtn4" >上传学位证</a>
+                                            </div>
+                                            <img alt="" src="" class="uploadImg" id="uploadImg4"/>
+                                            <input type="hidden" name="image4" id="uploadImage4" />
+                                        </div>
+                                        <div class="idCardItem">
+                                            <div>
+                                                <a href="javascript:;" id="uploadBtn5" >上传从医资格证</a>
+                                            </div>
+                                            <img alt="" src="" class="uploadImg" id="uploadImg5"/>
+                                            <input type="hidden" name="image5" id="uploadImage5" />
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
 						        <div class="form-group">
 						        	<button type="submit" id="asubmit" class="btn btn-primary col-sm-offset-4" data-loading-text="正在提交" style="margin-left: 430px"><i class="icon-ok"></i> 提交认证</button>
 						        </div>

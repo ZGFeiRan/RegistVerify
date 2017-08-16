@@ -1,23 +1,46 @@
-.mymetadata
-.checkstyle
-.classpath
+.svn/
+.idea/
+.settings/
 .project
-.class
-.war
-.zip
-.rar
-.idea
+.classpath
+target/
+out/
+bin/
+build/
 *.iml
-.settings/*
-/indexes/*
-/target/*
-/src/main/webapp/WEB-INF/classes/*
-/src/main/webapp/userfiles/*
-/target/
-.idea/*.xml
-.idea/libraries/*
-.idea/*
-json/
-image/
-deploy/
-*.DS_Store
+*.ipr
+*.class
+atlassian-ide-plugin.xml
+jars/
+nbactions.xml
+deploy-pom.xml
+tmp/
+
+# SBT
+boot/
+lib_managed/
+src_managed/
+test-output/
+.history
+
+# IntelliJ
+*.iws
+
+# Eclipse
+.cache
+.scala_dependencies
+.settings
+.target/
+
+# Netbeans
+.classpath_nb
+
+# Mac
+.DS_Store
+
+# Other
+*.pyc
+home/been/myApp.log
+logs/
+readme.txt
+test.tar

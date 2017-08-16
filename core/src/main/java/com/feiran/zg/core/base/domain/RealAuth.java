@@ -33,8 +33,11 @@ public class RealAuth extends BaseAuditDomain {
     private Date bornDate;// 出生日期
 
     private String address;// 家庭地址
-    private String image1;// 验证图片1,正面
-    private String image2;// 验证图片2,反面
+    private String image1;// 验证图片1,身份证正面
+    private String image2;// 验证图片2,身份证反面
+    private String image3;// 验证图片3,毕业证
+    private String image4;// 验证图片4,学位证
+    private String image5;// 验证图片5,从医资格证
 
     public String getSexDisplay(){
         return sex==SEX_FEMALE?"女":"男";

@@ -194,6 +194,20 @@
 				        		<img src="" id="image2" style="width: 150px;"/>
 				        	</div>
 						</div>
+                        <#--<div class="row">-->
+                            <#--<label class="col-sm-2 control-label" for="name">毕业证</label>-->
+                            <#--<div class="col-sm-4">-->
+                                <#--<img src="" id="image3" style="width: 150px;"/>-->
+                            <#--</div>-->
+                            <#--<label class="col-sm-2 control-label" for="name">学位证</label>-->
+                            <#--<div class="col-sm-4">-->
+                                <#--<img src="" id="image4" style="width: 150px;"/>-->
+                            <#--</div>-->
+                            <#--<label class="col-sm-2 control-label" for="name">从医资格证</label>-->
+                            <#--<div class="col-sm-4">-->
+                                <#--<img src="" id="image5" style="width: 150px;"/>-->
+                            <#--</div>-->
+                        <#--</div>-->
 						<div class="form-group">
 							<label class="col-sm-2 control-label" for="name">审核备注</label>
 				        	<div class="col-sm-6">
