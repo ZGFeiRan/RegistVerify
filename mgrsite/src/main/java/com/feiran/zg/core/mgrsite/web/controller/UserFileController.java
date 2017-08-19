@@ -38,10 +38,10 @@ public class UserFileController {
      */
     @RequestMapping("userFile_audit")
     @ResponseBody
-    public JsonResult userFileAudit(Long id, String remark, int score, int state){
+    public JsonResult userFileAudit(Long id, String remark,  int state){
         JsonResult jsonResult = new JsonResult();
         try {
-            this.userFileService.audit(id,remark,score,state);
+            this.userFileService.audit(id,remark,state);
         } catch (Exception e) {
             e.printStackTrace();
             jsonResult.setMsg(e.getMessage());

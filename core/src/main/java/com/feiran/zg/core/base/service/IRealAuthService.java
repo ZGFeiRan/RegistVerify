@@ -20,4 +20,6 @@ public interface IRealAuthService {
     PageResult queryForPageResult(RealAuthQueryObject qo);
 
     void audit(Long id,String remark,int state);
+
+    RealAuth getCurrent();
 }

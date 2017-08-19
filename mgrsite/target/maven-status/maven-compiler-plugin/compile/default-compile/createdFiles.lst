@@ -2,17 +2,12 @@ com\feiran\zg\core\mgrsite\web\controller\MainController.class
 com\feiran\zg\core\mgrsite\web\controller\LoginController.class
 com\feiran\zg\core\mgrsite\web\controller\BackDoorController.class
 com\feiran\zg\core\mgrsite\listener\InitAdminListener.class
-com\feiran\zg\core\mgrsite\web\controller\MoneyWithdrawController.class
 com\feiran\zg\core\mgrsite\job\CheckAccountJob.class
 com\feiran\zg\core\mgrsite\web\controller\SystemDictionaryController.class
 com\feiran\zg\core\mgrsite\web\inteceptor\LoginCheckInteceptor.class
-com\feiran\zg\core\mgrsite\web\controller\RechargeOffLineController.class
 com\feiran\zg\core\mgrsite\web\controller\LogoutController.class
 com\feiran\zg\core\mgrsite\web\controller\UserFileController.class
 com\feiran\zg\core\mgrsite\listener\InitSystemAccountListener.class
 com\feiran\zg\core\mgrsite\web\controller\IpLogController.class
-com\feiran\zg\core\mgrsite\web\controller\BidRequestController.class
 com\feiran\zg\core\mgrsite\web\filter\SysncImageFilter.class
-com\feiran\zg\core\mgrsite\web\controller\PlatformBankInfoController.class
-com\feiran\zg\core\mgrsite\web\controller\VedioAuthController.class
 com\feiran\zg\core\mgrsite\web\controller\RealAuthController.class

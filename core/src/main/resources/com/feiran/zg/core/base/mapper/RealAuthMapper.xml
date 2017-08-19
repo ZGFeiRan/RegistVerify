@@ -11,6 +11,9 @@
     <result column="state" property="state" jdbcType="TINYINT" />
     <result column="image1" property="image1" jdbcType="VARCHAR" />
     <result column="image2" property="image2" jdbcType="VARCHAR" />
+    <result column="image3" property="image3" jdbcType="VARCHAR" />
+    <result column="image4" property="image4" jdbcType="VARCHAR" />
+    <result column="image5" property="image5" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="auditTime" property="auditTime" jdbcType="TIMESTAMP" />
     <result column="applyTime" property="applyTime" jdbcType="TIMESTAMP" />
@@ -28,12 +31,13 @@
   <insert id="insert" useGeneratedKeys="true" keyProperty="id" >
     insert into realAuth (realName, sex, bornDate,
       idNumber, address, state, 
-      image1, image2, remark, 
+      image1, image2, image3, image4, image5, remark,
       auditTime, applyTime, auditor_id, 
       applier_id)
     values (#{realName,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT}, #{bornDate,jdbcType=VARCHAR},
       #{idNumber,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{state,jdbcType=TINYINT}, 
-      #{image1,jdbcType=VARCHAR}, #{image2,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{image1,jdbcType=VARCHAR}, #{image2,jdbcType=VARCHAR}, #{image3,jdbcType=VARCHAR},
+      #{image4,jdbcType=VARCHAR},#{image5,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR},
       #{auditTime,jdbcType=TIMESTAMP}, #{applyTime,jdbcType=TIMESTAMP}, #{auditor.id,jdbcType=BIGINT},
       #{applier.id,jdbcType=BIGINT})
   </insert>
@@ -47,6 +51,9 @@
       state = #{state,jdbcType=TINYINT},
       image1 = #{image1,jdbcType=VARCHAR},
       image2 = #{image2,jdbcType=VARCHAR},
+      image3 = #{image3,jdbcType=VARCHAR},
+      image4 = #{image4,jdbcType=VARCHAR},
+      image5 = #{image5,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
       auditTime = #{auditTime,jdbcType=TIMESTAMP},
       applyTime = #{applyTime,jdbcType=TIMESTAMP},
@@ -56,7 +63,7 @@
   </update>
 
   <sql id="base_column">
-    r.id, r.realName, r.sex, r.bornDate, r.idNumber, r.address, r.state, r.image1, r.image2, r.remark,
+    r.id, r.realName, r.sex, r.bornDate, r.idNumber, r.address, r.state, r.image1, r.image2,r.image3,r.image4,r.image5, r.remark,
     r.auditTime, r.applyTime,ap.id AS ap_id,ap.userName AS ap_userName,au.id AS au_id,au.userName AS au_userName
   </sql>
 

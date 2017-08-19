@@ -1,10 +1,7 @@
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\mgrsite\src\main\java\com\feiran\zg\core\mgrsite\web\controller\UserFileController.java
-C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\mgrsite\src\main\java\com\feiran\zg\core\mgrsite\web\controller\MoneyWithdrawController.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\mgrsite\src\main\java\com\feiran\zg\core\mgrsite\web\filter\SysncImageFilter.java
-C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\mgrsite\src\main\java\com\feiran\zg\core\mgrsite\web\controller\BidRequestController.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\mgrsite\src\main\java\com\feiran\zg\core\mgrsite\job\CheckAccountJob.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\mgrsite\src\main\java\com\feiran\zg\core\mgrsite\web\controller\MainController.java
-C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\mgrsite\src\main\java\com\feiran\zg\core\mgrsite\web\controller\RechargeOffLineController.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\mgrsite\src\main\java\com\feiran\zg\core\mgrsite\web\controller\SystemDictionaryController.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\mgrsite\src\main\java\com\feiran\zg\core\mgrsite\web\controller\RealAuthController.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\mgrsite\src\main\java\com\feiran\zg\core\mgrsite\web\inteceptor\LoginCheckInteceptor.java
@@ -13,6 +10,4 @@ C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\mgrsite\src\main\java\com\feira
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\mgrsite\src\main\java\com\feiran\zg\core\mgrsite\web\controller\LoginController.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\mgrsite\src\main\java\com\feiran\zg\core\mgrsite\web\controller\LogoutController.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\mgrsite\src\main\java\com\feiran\zg\core\mgrsite\web\controller\IpLogController.java
-C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\mgrsite\src\main\java\com\feiran\zg\core\mgrsite\web\controller\PlatformBankInfoController.java
-C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\mgrsite\src\main\java\com\feiran\zg\core\mgrsite\web\controller\VedioAuthController.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\mgrsite\src\main\java\com\feiran\zg\core\mgrsite\listener\InitSystemAccountListener.java

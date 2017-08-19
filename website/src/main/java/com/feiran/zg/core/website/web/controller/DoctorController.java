@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Created by FeiRan_ZG on 2017/8/14.
+ *
+ * 医生控制器
  */
 @Controller
 public class DoctorController {
@@ -12,17 +14,5 @@ public class DoctorController {
     public String newDoctor(){
 
         return "newDoctor";
-    }
-
-    @RequestMapping("doctorVisitInfo")
-    public String doctorVisitInfo(){
-
-        return "doctorVisitInfo";
-    }
-
-    @RequestMapping("doctorVisitHistory")
-    public String doctorVisitHistory(){
-
-        return "doctorVisitHistory";
     }
 }

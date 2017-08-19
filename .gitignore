@@ -1,3 +1,7 @@
+target
+.idea
+*.iml
+rebel.xml
 .svn/
 .idea/
 .settings/
@@ -7,7 +11,6 @@ target/
 out/
 bin/
 build/
-*.iml
 *.ipr
 *.class
 atlassian-ide-plugin.xml

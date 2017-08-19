@@ -16,7 +16,6 @@ import java.util.HashMap;
 @Alias("userFile")
 public class UserFile extends BaseAuditDomain {
     private String image;
-    private int score;
     private SystemDictionaryItem fileType;// 风控材料的类型
 
     public String getJsonString(){

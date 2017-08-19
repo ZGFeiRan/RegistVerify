@@ -216,8 +216,6 @@
 					</p>
 				</div>
 			</form>
-		</div>	
-			
-		<#include "common/footer-tpl.ftl" />			
+		</div>
 	</body>
 </html>

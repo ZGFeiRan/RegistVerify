@@ -58,8 +58,10 @@ public class BidRequestServiceImpl implements IBidRequestService {
 
     @Override
     public boolean canApply(UserInfo userInfo) {
-        // 判断当前用户是否已经实名认证、视频认证、填写了基本资料、风控材料分数
-        return userInfo.getIsRealAuth() && userInfo.getIsVedioAuth() && userInfo.getIsBasicInfo() && userInfo.getAuthScore() >= BidConst.CREDIT_BORROW_SCORE;
+        // 判断当前用户是否已经实名认证
+        return userInfo.getIsRealAuth();
+        // 判断当前用户是否已经实名认证、视频认证、填写了基本资料、风控材料分数大于最小可申请分数
+//        return userInfo.getIsRealAuth() && userInfo.getIsVedioAuth() && userInfo.getIsBasicInfo() && userInfo.getAuthScore() >= BidConst.CREDIT_BORROW_SCORE;
         //&& userInfo.getAuthScore()>=BidConst.CREDIT_BORROW_SCORE
     }
 

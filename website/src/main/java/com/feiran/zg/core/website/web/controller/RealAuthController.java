@@ -1,10 +1,11 @@
 package com.feiran.zg.core.website.web.controller;
 
 import com.feiran.zg.core.base.anno.RequireLogin;
+import com.feiran.zg.core.base.domain.DoctorInfo;
 import com.feiran.zg.core.base.domain.RealAuth;
 import com.feiran.zg.core.base.domain.UserInfo;
+import com.feiran.zg.core.base.service.IDoctorInfoService;
 import com.feiran.zg.core.base.service.IRealAuthService;
-import com.feiran.zg.core.base.service.IUserInfoService;
 import com.feiran.zg.core.base.utils.JsonResult;
 import com.feiran.zg.core.website.utils.UploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ import javax.servlet.ServletContext;
 public class RealAuthController extends BaseController{
 
     @Autowired
-    private IUserInfoService userInfoService;
+    private IDoctorInfoService doctorInfoService;
     @Autowired
     private IRealAuthService realAuthService;
     @Autowired
@@ -34,7 +35,7 @@ public class RealAuthController extends BaseController{
     @RequestMapping("realAuth")
     public String realAuth(Model model){
         // 得到当前的用户
-        UserInfo current = this.userInfoService.getCurrent();
+        DoctorInfo current = this.doctorInfoService.getCurrent();
         // 如果用户没有实名认证,并且realAuthId为空,则导向到realAuth页面
         if (!current.getIsRealAuth() && current.getRealAuthId() == null){
             return "realAuth";

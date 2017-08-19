@@ -7,7 +7,6 @@
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
         <result column="auditTime" property="auditTime" jdbcType="TIMESTAMP"/>
         <result column="applyTime" property="applyTime" jdbcType="TIMESTAMP"/>
-        <result column="score" property="score" jdbcType="TINYINT"/>
         <result column="image" property="image" jdbcType="VARCHAR"/>
 
         <association property="applier" column="applier_id" javaType="loginInfo" columnPrefix="ap_">
@@ -34,11 +33,11 @@
     <insert id="insert" parameterType="com.feiran.zg.core.base.domain.UserFile" useGeneratedKeys="true" keyProperty="id">
     insert into userFile (state, remark, auditTime,
       applyTime, auditor_id, applier_id,
-      score, image, fileType_id
+       image, fileType_id
       )
     values (#{state,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}, #{auditTime,jdbcType=TIMESTAMP},
       #{applyTime,jdbcType=TIMESTAMP}, #{auditor.id,jdbcType=BIGINT}, #{applier.id,jdbcType=BIGINT},
-      #{score,jdbcType=TINYINT}, #{image,jdbcType=VARCHAR}, #{fileType.id,jdbcType=BIGINT}
+      #{image,jdbcType=VARCHAR}, #{fileType.id,jdbcType=BIGINT}
       )
   </insert>
 
@@ -50,14 +49,13 @@
       applyTime = #{applyTime,jdbcType=TIMESTAMP},
       auditor_id = #{auditor.id,jdbcType=BIGINT},
       applier_id = #{applier.id,jdbcType=BIGINT},
-      score = #{score,jdbcType=TINYINT},
       image = #{image,jdbcType=VARCHAR},
       fileType_id = #{fileType.id,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
 
     <sql id="base_column">
-       uf.id, uf.state, uf.remark, uf.auditTime, uf.applyTime, uf.score, uf.image,
+       uf.id, uf.state, uf.remark, uf.auditTime, uf.applyTime, uf.image,
        ap.id AS ap_id,ap.userName AS ap_userName,
        au.id AS au_id,au.userName AS au_userName,
        ft.id AS ft_id,ft.title AS ft_title

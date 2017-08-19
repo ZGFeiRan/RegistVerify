@@ -153,6 +153,6 @@
 			</div>
 		</div>		
 						
-		<#include "common/footer-tpl.ftl" />
+
 	</body>
 </html>

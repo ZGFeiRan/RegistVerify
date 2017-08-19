@@ -28,6 +28,7 @@ C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\z
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\service\impl\VedioAuthServiceImpl.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\query\IpLogQueryObject.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\web\controller\BaseController.java
+C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\domain\DoctorInfo.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\domain\SystemDictionary.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\business\mapper\AccountFlowMapper.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\service\impl\SystemDictionaryServiceImpl.java
@@ -38,10 +39,13 @@ C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\z
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\service\ISystemDictionaryService.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\service\impl\BackDoorServiceImpl.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\service\IRealAuthService.java
+C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\service\IDoctorVisitService.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\business\mapper\BidRequestAuditHistoryMapper.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\service\impl\RealAuthServiceImpl.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\business\event\RealAuthSuccessEvetn.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\utils\UserContext.java
+C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\service\impl\DoctorInfoServiceImpl.java
+C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\service\impl\DoctorVisitServiceImpl.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\business\service\impl\MessageServiceImpl.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\query\AccountFlowQueryObject.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\domain\IpLog.java
@@ -86,10 +90,12 @@ C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\z
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\business\service\impl\MailServiceImpl.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\business\service\impl\MoneyWithdrawServiceImpl.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\mapper\UserFileMapper.java
+C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\mapper\DoctorInfoMapper.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\query\QueryObject.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\business\util\CalculatetUtil.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\service\IUserFileService.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\business\service\impl\AccountFlowServiceImpl.java
+C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\service\IDoctorInfoService.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\business\event\VedioAuthSuccessEvetn.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\business\query\PlatformBankInfoQueryObject.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\utils\DateUtil.java

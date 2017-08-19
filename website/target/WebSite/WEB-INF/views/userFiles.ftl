@@ -69,7 +69,7 @@
 					      <img src="${file.image}" style="width: 240px;height: 260px;"/>
 					      <div class="caption">
 					        <h4>${file.fileType.title}</h4>
-					        <p>得分：${file.score} &nbsp;&nbsp;状态：${file.stateDisplay}</p>
+					        <p>状态：${file.stateDisplay}</p>
 					      </div>
 					    </div>
 					  </div>

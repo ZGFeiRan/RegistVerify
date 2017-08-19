@@ -48,5 +48,5 @@ public interface IUserFileService {
     /**
      * 风控材料审核
      */
-    void audit(Long id,String remark,int score,int state);
+    void audit(Long id,String remark,int state);
 }

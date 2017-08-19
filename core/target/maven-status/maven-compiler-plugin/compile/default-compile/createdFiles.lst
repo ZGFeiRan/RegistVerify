@@ -11,6 +11,7 @@ com\feiran\zg\core\base\domain\VedioAuth.class
 com\feiran\zg\core\business\service\IMoneyWithdrawService.class
 com\feiran\zg\core\business\service\impl\MoneyWithdrawServiceImpl.class
 com\feiran\zg\core\base\domain\UserFile.class
+com\feiran\zg\core\base\service\IDoctorVisitService.class
 com\feiran\zg\core\business\domain\PlatformBankInfo.class
 com\feiran\zg\core\business\service\IPlatformBankInfoService.class
 com\feiran\zg\core\base\service\IEmailService.class
@@ -20,6 +21,7 @@ com\feiran\zg\core\base\mapper\IpLogMapper.class
 com\feiran\zg\core\base\service\impl\EmailServiceImpl.class
 com\feiran\zg\core\business\query\BidRequestQueryObject.class
 com\feiran\zg\core\base\utils\MD5.class
+com\feiran\zg\core\base\service\IDoctorInfoService.class
 com\feiran\zg\core\business\mapper\RechargeOffLineMapper.class
 com\feiran\zg\core\base\domain\UserInfo.class
 com\feiran\zg\core\base\service\impl\VerifyCodeServiceImpl.class
@@ -54,6 +56,7 @@ com\feiran\zg\core\base\service\ILoginInfoService.class
 com\feiran\zg\core\base\query\QueryObject.class
 com\feiran\zg\core\base\query\VedioAuthQueryObject.class
 com\feiran\zg\core\base\service\impl\IpLogServiceImpl.class
+com\feiran\zg\core\base\service\impl\DoctorInfoServiceImpl.class
 com\feiran\zg\core\business\mapper\BidRequestAuditHistoryMapper.class
 com\feiran\zg\core\base\domain\MailVerify.class
 com\feiran\zg\core\business\mapper\BidRequestMapper.class
@@ -83,9 +86,11 @@ com\feiran\zg\core\business\domain\AccountFlow.class
 com\feiran\zg\core\base\mapper\SystemDictionaryMapper.class
 com\feiran\zg\core\business\service\IAcountFlow.class
 com\feiran\zg\core\business\service\impl\BidRequestServiceImpl.class
+com\feiran\zg\core\base\domain\DoctorInfo.class
 com\feiran\zg\core\base\service\IAccountService.class
 com\feiran\zg\core\base\web\controller\BaseController.class
 com\feiran\zg\core\business\domain\SystemAccountFlow.class
+com\feiran\zg\core\base\mapper\DoctorInfoMapper.class
 com\feiran\zg\core\business\mapper\PaymentScheduleDetailMapper.class
 com\feiran\zg\core\base\mapper\LoginInfoMapper.class
 com\feiran\zg\core\base\domain\SystemDictionaryItem.class
@@ -101,6 +106,7 @@ com\feiran\zg\core\base\mapper\RealAuthMapper.class
 com\feiran\zg\core\business\service\impl\AccountFlowServiceImpl.class
 com\feiran\zg\core\business\service\IUserBankInfoService.class
 com\feiran\zg\core\business\domain\SystemAccount.class
+com\feiran\zg\core\base\service\impl\DoctorVisitServiceImpl.class
 com\feiran\zg\core\business\mapper\SystemAccountFlowMapper.class
 com\feiran\zg\core\base\utils\BitStatesUtils.class
 com\feiran\zg\core\business\query\PlatformBankInfoQueryObject.class

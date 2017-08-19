@@ -1,10 +1,7 @@
 package com.feiran.zg.core.base.service.impl;
 
+import com.feiran.zg.core.base.domain.*;
 import com.feiran.zg.core.base.service.ILoginInfoService;
-import com.feiran.zg.core.base.domain.Account;
-import com.feiran.zg.core.base.domain.IpLog;
-import com.feiran.zg.core.base.domain.LoginInfo;
-import com.feiran.zg.core.base.domain.UserInfo;
 import com.feiran.zg.core.base.mapper.IpLogMapper;
 import com.feiran.zg.core.base.mapper.LoginInfoMapper;
 import com.feiran.zg.core.base.service.IAccountService;
@@ -26,10 +23,10 @@ import java.util.Map;
 public class LoginInfoServiceImpl implements ILoginInfoService {
     @Autowired
     private LoginInfoMapper loginInfoMapper;
-    @Autowired
-    private IUserInfoService userInfoService;
-    @Autowired
-    private IAccountService accountService;
+//    @Autowired
+//    private IUserInfoService userInfoService;
+//    @Autowired
+//    private IAccountService accountService;
     @Autowired
     private IpLogMapper ipLogMapper;
 
@@ -42,22 +39,23 @@ public class LoginInfoServiceImpl implements ILoginInfoService {
             throw new RuntimeException("该用户名已存在");
         }else {
             // 如果用户名不存在,则注册
-            LoginInfo info = new LoginInfo();
-            info.setUserName(userName);
-            info.setPassword(MD5.encode(password));
-            info.setState(LoginInfo.STATE_NORMAL);// 设置用户的状态为正常状态,如果账户有异常就设置为锁定状态
-            info.setUserType(LoginInfo.USER_CLIENT);// 设置用户为前台客户,而不是后台管理人员
-            loginInfoMapper.insert(info);
-
-            // 创建属于该用户的账户信息
-            Account account = new Account();
-            account.setId(info.getId());
-            this.accountService.add(account);
+            LoginInfo loginInfo = new LoginInfo();
+            loginInfo.setUserName(userName);
+            loginInfo.setPassword(MD5.encode(password));
+            loginInfo.setState(LoginInfo.STATE_NORMAL);// 设置用户的状态为正常状态,如果账户有异常就设置为锁定状态
+            loginInfo.setUserType(LoginInfo.USER_CLIENT);// 设置用户为前台客户,而不是后台管理人员
+            loginInfoMapper.insert(loginInfo);
 
             // 创建属于该用户的用户信息
-            UserInfo userInfo = new UserInfo();
-            userInfo.setId(info.getId());
-            this.userInfoService.add(userInfo);
+//            UserInfo userInfo = new UserInfo();
+//            userInfo.setId(loginInfo.getId());
+//            this.userInfoService.add(userInfo);
+
+            if (loginInfo.getUserType()==LoginInfo.USER_CLIENT){// 只为医生客户创建医生信息对象，后台管理员不需要对应的医生对象信息。
+                // 创建用户信息
+                DoctorInfo doctorInfo = new DoctorInfo();
+                doctorInfo.setId(loginInfo.getId());
+            }
         }
     }
 

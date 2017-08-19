@@ -114,7 +114,5 @@
 		</div>
 	</div>
 
-	<!-- 网页版权 -->
-	<#include "common/footer-tpl.ftl" />
 </body>
 </html>

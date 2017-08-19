@@ -35,8 +35,8 @@ public class RealAuth extends BaseAuditDomain {
     private String address;// 家庭地址
     private String image1;// 验证图片1,身份证正面
     private String image2;// 验证图片2,身份证反面
-    private String image3;// 验证图片3,毕业证
-    private String image4;// 验证图片4,学位证
+    private String image3;// 验证图片3,毕业证图片
+    private String image4;// 验证图片4,学位证图片
     private String image5;// 验证图片5,从医资格证
 
     public String getSexDisplay(){
@@ -54,6 +54,9 @@ public class RealAuth extends BaseAuditDomain {
         json.put("address", address);
         json.put("image1", image1);
         json.put("image2", image2);
+        json.put("image3", image3);
+        json.put("image4", image4);
+        json.put("image5", image5);
         String jsonString = JSON.toJSONString(json);
         return jsonString;
     }

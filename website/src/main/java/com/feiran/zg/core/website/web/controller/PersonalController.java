@@ -27,13 +27,8 @@ import java.util.List;
 @Controller
 public class PersonalController {
     @Autowired
-    private IAccountService accountService;
-    @Autowired
     private IUserInfoService userInfoService;
-    @Autowired
-    private ISystemDictionaryService systemDictionaryService;
-    @Autowired
-    private IAccountFlowService accountFlowService;
+
 
     /**
      * 个人中心首页
@@ -41,7 +36,6 @@ public class PersonalController {
     @RequestMapping("/personal")
     @RequireLogin("个人中心首页")
     public String personal(Model model){
-        model.addAttribute("account", accountService.getCurrent());
         model.addAttribute("userInfo",userInfoService.getCurrent());
         return "personal";
     }
@@ -83,64 +77,5 @@ public class PersonalController {
             model.addAttribute("msg",e.getMessage());
         }
         return "checkmail_result";
-    }
-
-    /**
-     * 查看个人资料时,回显用户基本资料
-     */
-    @RequireLogin("查看个人资料时,回显用户基本资料")
-    @RequestMapping("basicInfo")
-    public String basicInfo(Model model){
-        UserInfo userInfo = this.userInfoService.getCurrent();
-        model.addAttribute("userInfo",userInfo);
-
-        List<SystemDictionaryItem> educationBackgrounds = this.systemDictionaryService.loadBySn("educationBackground");
-        model.addAttribute("educationBackgrounds",educationBackgrounds);
-
-        List<SystemDictionaryItem> incomeGrades = this.systemDictionaryService.loadBySn("incomeGrade");
-        model.addAttribute("incomeGrades",incomeGrades);
-
-        List<SystemDictionaryItem> marriages = this.systemDictionaryService.loadBySn("marriage");
-        model.addAttribute("marriages",marriages);
-
-        List<SystemDictionaryItem> kidCounts = this.systemDictionaryService.loadBySn("kidCount");
-        model.addAttribute("kidCounts",kidCounts);
-
-        List<SystemDictionaryItem> houseConditions = this.systemDictionaryService.loadBySn("houseCondition");
-        model.addAttribute("houseConditions",houseConditions);
-
-        return "userInfo";
-    }
-
-    /**
-     * 保存/修改用户信息
-     */
-    @RequireLogin("保存/修改用户信息")
-    @RequestMapping("basicInfo_save")
-    @ResponseBody
-    public JsonResult basicInfoSave(UserInfo userInfo){
-        JsonResult jsonResult = new JsonResult();
-
-        try {
-            this.userInfoService.saveOrUpdateUserInfo(userInfo);
-        } catch (Exception e) {
-            e.printStackTrace();
-            jsonResult.setMsg(e.getMessage());
-            jsonResult.setSuccess(false);
-        }
-        return jsonResult;
-    }
-
-    /**
-     * 流水列表
-     */
-    @RequestMapping("accountFlow_list")
-    @RequireLogin("查询流水列表")
-    public String accountFlowList(@ModelAttribute("qo")AccountFlowQueryObject qo, Model model){
-        qo.setLoginInfoId(UserContext.getCurrent().getId());// 用户只能查询自己的流水信息
-        PageResult pageResult = this.accountFlowService.queryForPageResult(qo);
-        model.addAttribute("pageResult",pageResult);
-        model.addAttribute("qo",qo);
-        return "accountFlow_list";
     }
 }
