@@ -113,36 +113,43 @@
 						<div class="panel-body el-account">
 							<div class="el-account-info">
 								<div class="pull-left el-head-img">
-									<img class="icon" src="/images/logo.png" style="width: 100px;height: 100px;"/>
+									<img class="icon" src="${doctorInfo.doctorImg}" style="width: 100px;height: 100px;"/>
 								</div>
 								<div class="pull-left el-head">
                                     <table style="width: 100%;height: 100px;">
                                         <tr>
-											<td><span>账户名称：${loginInfo.userName}</span></td>
-                                            <#--<td><span>真实姓名： ${realAuth.realName}</span></td>-->
-                                            <#--<td><span>性别：${realAuth.sexDisplay}</span></td>-->
-                                        </tr>
+                                            <td><span>登录账户名：${loginInfo.userName!"尚未完善"}</span></td>
+											<td><span style="margin-left: 100px">上次登录时间：${loginInfo.lastLoginDateTime?string('yyyy-MM-dd HH:mm:ss')}</span></td>
+										</tr>
                                         <tr>
-                                            <#--<td><span>证件号码： ${realAuth.idNumber}</span></td>-->
-                                            <#--<td><span>出生日期：${(realAuth.bornDate?string('yyyy-MM-dd'))!''}</span></td>-->
-											<td><span>所属医院：${loginInfo.userName}</span></td>
+                                            <td><span >真实姓名： ${(realAuth.realName)!"尚未完善"}</span></td>
+                                            <td><span style="margin-left: 100px">性别：${(realAuth.sexDisplay)!"尚未完善"}</span></td>
                                         </tr>
+										<tr>
+                                            <td><span>证件号码： ${(realAuth.idNumber)!"尚未完善"}</span></td>
+										</tr>
                                     </table>
-									<p>
-                                        <span>所属科室：${loginInfo.userName}</span>
-                                        <span style="margin-left: 100px">医生职称：${loginInfo.userName}</span>
-									</p>
-									<p>
-                                        <span>学位职称：${loginInfo.userName}</span>
-                                        <span style="margin-left: 100px">行政职称：${loginInfo.userName}</span>
-									</p>
-                                    <p>
-                                        <span>我的特长：${loginInfo.userName}</span>
-                                    </p>
-                                    <p>
-                                        <span>我的简介：${loginInfo.userName}</span>
-                                    </p>
-									<p>上次登录时间：${loginInfo.lastLoginDateTime?string('yyyy-MM-dd HH:mm:ss')}</p>
+								</div>
+								<div class="pull-left el-head">
+                                    <table style="width: 100%;height: 100px;">
+                                        <tr>
+                                            <td><span>出生日期：${(realAuth.bornDate?string('yyyy-MM-dd'))!"尚未完善"}</span></td>
+											<td><span style="margin-left: 100px">所属医院：${(doctorInfo.hospitalName)!"尚未完善"}</span></td>
+                                        </tr>
+										<tr>
+											<td><span>所属科室：${(doctorInfo.officesName)!"尚未完善"}</span></td>
+											<td><span style="margin-left: 100px">医生职称：${(doctorInfo.doctorTitle)!"尚未完善"}</span></td>
+										</tr>
+										<tr>
+											<td><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学位：${(doctorInfo.doctorDegree)!"尚未完善"}</span></td>
+										</tr>
+										<tr>
+											<td><span>我的特长：${(doctorInfo.doctorForte)!"尚未完善"}</span></td>
+										</tr>
+										<tr>
+											<td><span>我的简介：${(doctorInfo.doctorAbout)!"尚未完善"}</span></td>
+										</tr>
+                                    </table>
 								</div>
 								<div class="clearfix"></div>
 							</div>
@@ -156,7 +163,7 @@
 											</div>
 											<div class="el-accoun-auth-right">
 												<h5>实名认证</h5>
-												<#if userInfo.isRealAuth>
+												<#if (doctorInfo.isRealAuth)!false>
                                                     <p>
                                                         已认证
                                                         <a href="/realAuth.do" id="">查看</a>
@@ -180,7 +187,7 @@
 											</div>
 											<div class="el-accoun-auth-right">
 												<h5>手机认证</h5>
-												<#if userInfo.isBindPhone>
+												<#if (doctorInfo.isBindPhone)!false>
                                                     <p>
                                                         已认证
                                                         <a href="javascript:;" id="changeBindPhoneModal">修改手绑定的机号</a>
@@ -203,7 +210,7 @@
 											</div>
 											<div class="el-accoun-auth-right">
 												<h5>邮箱认证</h5>
-												<#if userInfo.isBindEmail>
+												<#if (doctorInfo.isBindEmail)!false>
 													<p>
 														已绑定
 														<a href="javascript:;" id="changeBindEmailModal">解绑</a>
@@ -228,7 +235,7 @@
 		</div>
 
 
-		<#if !userInfo.isBindPhone>
+		<#if !(doctorInfo.isBindPhone)!false>
         <div class="modal fade" id="bindPhoneModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -263,7 +270,7 @@
 		</#if>
 
 
-		<#if !userInfo.isBindEmail>
+		<#if !(doctorInfo.isBindEmail)!false>
         <div class="modal fade" id="bindEmailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">

@@ -53,115 +53,115 @@
 				margin-bottom: 20px;
 			}
 		</style>
-		<script type="text/javascript">
-		
-		$(function(){
-			$("#viewExample").popover({
-				html:true,
-				content:'正面<img src="/images/upload_source_2.jpg" class="uploadExample"/><br/>反面<img src="/images/upload_source_2_1.jpg" class="uploadExample"/>',				
-				trigger:"hover",
-				placement:"top"
-			});
-			
-			//上传身份证的正面,把上传身份证正面的a标签变成一个uploadify的组件   ;jsessionid=
-			$("#uploadBtn1").uploadify({
-                auto:true,
-				buttonText:"身份证正面",
-				fileObjName:"file",
-				fileTypeDesc:"身份证正面图片",
-				fileTypeExts:"*.gif; *.jpg; *.png",
-				multi:false,
-				swf:"/js/plugins/uploadify/uploadify.swf",
-				uploader:"/realAuthUpload.do",
-                // 覆盖默认的效果
-				overrideEvents:["onUploadSuccess","onSelect"],
-				// 文件上传成功后的回调
-				onUploadSuccess:function(file,data,response){
-					$("#uploadImg1").attr("src",data);
-					$("#uploadImage1").val(data);
-				}
-			});
-			
-			$("#uploadBtn2").uploadify({
-                auto:true,
-				buttonText:"身份证反面",
-				fileObjName:"file",
-				fileTypeDesc:"身份证反面图片",
-				fileTypeExts:"*.gif; *.jpg; *.png",
-				multi:false,
-				swf:"/js/plugins/uploadify/uploadify.swf",
-				uploader:"/realAuthUpload.do",
-				// 覆盖默认的效果
-				overrideEvents:["onUploadSuccess","onSelect"],
-                // 文件上传成功后的回调
-				onUploadSuccess:function(file,data){
-					$("#uploadImg2").attr("src",data);
-					$("#uploadImage2").val(data);
-				}
-			});
-			$("#uploadBtn3").uploadify({
-                auto:true,
-				buttonText:"上传毕业证",
-				fileObjName:"file",
-				fileTypeDesc:"上传毕业证图片",
-				fileTypeExts:"*.gif; *.jpg; *.png",
-				multi:false,
-				swf:"/js/plugins/uploadify/uploadify.swf",
-				uploader:"/realAuthUpload.do",
-				// 覆盖默认的效果
-				overrideEvents:["onUploadSuccess","onSelect"],
-                // 文件上传成功后的回调
-				onUploadSuccess:function(file,data){
-					$("#uploadImg3").attr("src",data);
-					$("#uploadImage3").val(data);
-				}
-			});
-			$("#uploadBtn4").uploadify({
-                auto:true,
-				buttonText:"上传学位证",
-				fileObjName:"file",
-				fileTypeDesc:"上传学位证图片",
-				fileTypeExts:"*.gif; *.jpg; *.png",
-				multi:false,
-				swf:"/js/plugins/uploadify/uploadify.swf",
-				uploader:"/realAuthUpload.do",
-				// 覆盖默认的效果
-				overrideEvents:["onUploadSuccess","onSelect"],
-                // 文件上传成功后的回调
-				onUploadSuccess:function(file,data){
-					$("#uploadImg4").attr("src",data);
-					$("#uploadImage4").val(data);
-				}
-			});
-			$("#uploadBtn5").uploadify({
-                auto:true,
-				buttonText:"上传从医资格证",
-				fileObjName:"file",
-				fileTypeDesc:"上传从医资格证图片",
-				fileTypeExts:"*.gif; *.jpg; *.png",
-				multi:false,
-				swf:"/js/plugins/uploadify/uploadify.swf",
-				uploader:"/realAuthUpload.do",
-				// 覆盖默认的效果
-				overrideEvents:["onUploadSuccess","onSelect"],
-                // 文件上传成功后的回调
-				onUploadSuccess:function(file,data){
-					$("#uploadImg5").attr("src",data);
-					$("#uploadImage5").val(data);
-				}
-			});
 
-			//Ajax提交表单
-			$("#realAuthForm").ajaxForm(function(){
-				$.messager.confirm("提示","实名认证申请提交成功!",function(){
-					window.location.reload();
+		<script type="text/javascript">
+			$(function(){
+				$("#viewExample").popover({
+					html:true,
+					content:'正面<img src="/images/upload_source_2.jpg" class="uploadExample"/><br/>反面<img src="/images/upload_source_2_1.jpg" class="uploadExample"/>',
+					trigger:"hover",
+					placement:"top"
+				});
+
+				//上传身份证的正面,把上传身份证正面的a标签变成一个uploadify的组件   ;jsessionid=
+				$("#uploadBtn1").uploadify({
+					auto:true,
+					buttonText:"身份证正面",
+					fileObjName:"file",
+					fileTypeDesc:"身份证正面图片",
+					fileTypeExts:"*.gif; *.jpg; *.png",
+					multi:false,
+					swf:"/js/plugins/uploadify/uploadify.swf",
+					uploader:"/realAuthUpload.do",
+					// 覆盖默认的效果
+					overrideEvents:["onUploadSuccess","onSelect"],
+					// 文件上传成功后的回调
+					onUploadSuccess:function(file,data,response){
+						$("#uploadImg1").attr("src",data);
+						$("#uploadImage1").val(data);
+					}
+				});
+
+				$("#uploadBtn2").uploadify({
+					auto:true,
+					buttonText:"身份证反面",
+					fileObjName:"file",
+					fileTypeDesc:"身份证反面图片",
+					fileTypeExts:"*.gif; *.jpg; *.png",
+					multi:false,
+					swf:"/js/plugins/uploadify/uploadify.swf",
+					uploader:"/realAuthUpload.do",
+					// 覆盖默认的效果
+					overrideEvents:["onUploadSuccess","onSelect"],
+					// 文件上传成功后的回调
+					onUploadSuccess:function(file,data){
+						$("#uploadImg2").attr("src",data);
+						$("#uploadImage2").val(data);
+					}
+				});
+				$("#uploadBtn3").uploadify({
+					auto:true,
+					buttonText:"上传毕业证",
+					fileObjName:"file",
+					fileTypeDesc:"上传毕业证图片",
+					fileTypeExts:"*.gif; *.jpg; *.png",
+					multi:false,
+					swf:"/js/plugins/uploadify/uploadify.swf",
+					uploader:"/realAuthUpload.do",
+					// 覆盖默认的效果
+					overrideEvents:["onUploadSuccess","onSelect"],
+					// 文件上传成功后的回调
+					onUploadSuccess:function(file,data){
+						$("#uploadImg3").attr("src",data);
+						$("#uploadImage3").val(data);
+					}
+				});
+				$("#uploadBtn4").uploadify({
+					auto:true,
+					buttonText:"上传学位证",
+					fileObjName:"file",
+					fileTypeDesc:"上传学位证图片",
+					fileTypeExts:"*.gif; *.jpg; *.png",
+					multi:false,
+					swf:"/js/plugins/uploadify/uploadify.swf",
+					uploader:"/realAuthUpload.do",
+					// 覆盖默认的效果
+					overrideEvents:["onUploadSuccess","onSelect"],
+					// 文件上传成功后的回调
+					onUploadSuccess:function(file,data){
+						$("#uploadImg4").attr("src",data);
+						$("#uploadImage4").val(data);
+					}
+				});
+				$("#uploadBtn5").uploadify({
+					auto:true,
+					buttonText:"上传从医资格证",
+					fileObjName:"file",
+					fileTypeDesc:"上传从医资格证图片",
+					fileTypeExts:"*.gif; *.jpg; *.png",
+					multi:false,
+					swf:"/js/plugins/uploadify/uploadify.swf",
+					uploader:"/realAuthUpload.do",
+					// 覆盖默认的效果
+					overrideEvents:["onUploadSuccess","onSelect"],
+					// 文件上传成功后的回调
+					onUploadSuccess:function(file,data){
+						$("#uploadImg5").attr("src",data);
+						$("#uploadImage5").val(data);
+					}
+				});
+
+				//Ajax提交表单
+				$("#realAuthForm").ajaxForm(function(){
+					$.messager.confirm("提示","实名认证申请提交成功!",function(){
+						window.location.reload();
+					});
+				});
+
+				$("#bornDate").addClass("Wdate").click(function(){
+					WdatePicker();
 				});
 			});
-
-            $("#bornDate").addClass("Wdate").click(function(){
-                WdatePicker();
-            });
-		});
 		</script>
 	</head>
 	<body>

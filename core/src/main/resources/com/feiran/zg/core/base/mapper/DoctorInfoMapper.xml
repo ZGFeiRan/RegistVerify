@@ -15,10 +15,11 @@
     <result column="doctor_forte" property="doctorForte" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
-    <result column="realAuth_id" property="realauthId" jdbcType="BIGINT" />
+    <result column="realAuth_id" property="realAuthId" jdbcType="BIGINT" />
     <result column="bit_state" property="bitState" jdbcType="BIGINT" />
     <result column="is_delete" property="isDelete" jdbcType="TINYINT" />
     <result column="doctor_about" property="doctorAbout" jdbcType="LONGVARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
   </resultMap>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
@@ -33,18 +34,19 @@
       teach_title, doctor_administrative, doctor_degree, 
       doctor_forte, email, phone_number, 
       realAuth_id, bit_state, is_delete, 
-      doctor_about)
+      doctor_about,version)
     values (#{doctorName,jdbcType=VARCHAR}, #{doctorSex,jdbcType=CHAR}, #{hospitalName,jdbcType=VARCHAR}, 
       #{officesName,jdbcType=VARCHAR}, #{doctorImg,jdbcType=VARCHAR}, #{doctorTitle,jdbcType=VARCHAR}, 
       #{teachTitle,jdbcType=VARCHAR}, #{doctorAdministrative,jdbcType=VARCHAR}, #{doctorDegree,jdbcType=VARCHAR}, 
       #{doctorForte,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, 
-      #{realauthId,jdbcType=BIGINT}, #{bitState,jdbcType=BIGINT}, #{isDelete,jdbcType=TINYINT}, 
-      #{doctorAbout,jdbcType=LONGVARCHAR})
+      #{realAuthId,jdbcType=BIGINT}, #{bitState,jdbcType=BIGINT}, #{isDelete,jdbcType=TINYINT},
+      #{doctorAbout,jdbcType=LONGVARCHAR},0)
   </insert>
 
   <update id="updateByPrimaryKey" parameterType="com.feiran.zg.core.base.domain.DoctorInfo" >
     update doctorinfo
-    set doctor_name = #{doctorName,jdbcType=VARCHAR},
+    set version = version + 1,
+      doctor_name = #{doctorName,jdbcType=VARCHAR},
       doctor_sex = #{doctorSex,jdbcType=CHAR},
       hospital_name = #{hospitalName,jdbcType=VARCHAR},
       offices_name = #{officesName,jdbcType=VARCHAR},
@@ -56,17 +58,17 @@
       doctor_forte = #{doctorForte,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       phone_number = #{phoneNumber,jdbcType=VARCHAR},
-      realAuth_id = #{realauthId,jdbcType=BIGINT},
+      realAuth_id = #{realAuthId,jdbcType=BIGINT},
       bit_state = #{bitState,jdbcType=BIGINT},
       is_delete = #{isDelete,jdbcType=TINYINT},
       doctor_about = #{doctorAbout,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT} AND version = #{version}
   </update>
 
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select id, doctor_name, doctor_sex, hospital_name, offices_name, doctor_img, doctor_title, 
     teach_title, doctor_administrative, doctor_degree, doctor_forte, email, phone_number, 
-    realAuth_id, bit_state, is_delete, doctor_about
+    realAuth_id, bit_state, is_delete, doctor_about,version
     from doctorinfo
     where id = #{id,jdbcType=BIGINT}
   </select>
@@ -74,7 +76,7 @@
   <select id="selectAll" resultMap="BaseResultMap" >
     select id, doctor_name, doctor_sex, hospital_name, offices_name, doctor_img, doctor_title, 
     teach_title, doctor_administrative, doctor_degree, doctor_forte, email, phone_number, 
-    realAuth_id, bit_state, is_delete, doctor_about
+    realAuth_id, bit_state, is_delete, doctor_about,version
     from doctorinfo
   </select>
 

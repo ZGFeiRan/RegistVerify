@@ -4,9 +4,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
+import com.feiran.zg.core.base.domain.DoctorInfo;
+import com.feiran.zg.core.base.domain.LoginInfo;
+import com.feiran.zg.core.base.service.IDoctorInfoService;
 import com.feiran.zg.core.base.utils.BidConst;
+import com.feiran.zg.core.base.utils.UserContext;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -15,7 +21,10 @@ import org.springframework.web.multipart.MultipartFile;
  * @author Administrator
  * 
  */
+@Component
 public class UploadUtil {
+//	@Autowired
+//	private static IDoctorInfoService doctorInfoService;
 
 	/**
 	 * 处理文件上传
@@ -25,7 +34,7 @@ public class UploadUtil {
 	 *            存放文件的目录的绝对路径 servletContext.getRealPath("/upload")
 	 * @return
 	 */
-	public static String upload(MultipartFile file, String basePath) {
+	public static String upload(MultipartFile file, String basePath, IDoctorInfoService doctorInfoService) {
 		// 获取从页面传递过来的文件的文件名
 		String orgFileName = file.getOriginalFilename();
 		// 拼接上传文件的名字
@@ -40,7 +49,10 @@ public class UploadUtil {
             System.out.println(BidConst.PUBLIC_IMG_SHARE_PATH);
             FileUtils.writeByteArrayToFile(publicFile, file.getBytes());
             System.out.println(publicFile.getAbsolutePath());
-        } catch (IOException e) {
+//			fileName = publicFile.getAbsolutePath();
+//			DoctorInfo currentDoctorInfo = doctorInfoService.getCurrent();
+//			currentDoctorInfo.setDoctorImg(publicFile.getAbsolutePath());
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return fileName;

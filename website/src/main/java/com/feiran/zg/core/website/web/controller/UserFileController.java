@@ -3,6 +3,7 @@ package com.feiran.zg.core.website.web.controller;
 import com.feiran.zg.core.base.anno.RequireLogin;
 import com.feiran.zg.core.base.domain.SystemDictionaryItem;
 import com.feiran.zg.core.base.domain.UserFile;
+import com.feiran.zg.core.base.service.IDoctorInfoService;
 import com.feiran.zg.core.base.service.ISystemDictionaryService;
 import com.feiran.zg.core.base.service.IUserFileService;
 import com.feiran.zg.core.base.utils.JsonResult;
@@ -31,6 +32,8 @@ public class UserFileController extends BaseController {
     private ServletContext servletContext;
     @Autowired
     private ISystemDictionaryService systemDictionaryService;
+    @Autowired
+    private IDoctorInfoService doctorInfoService;
 
     @RequireLogin("风控材料认证 ")
     @RequestMapping("userFile")
@@ -55,7 +58,7 @@ public class UserFileController extends BaseController {
     public String userFileUpload(MultipartFile file){
         try {
             String realPath = this.servletContext.getRealPath("/upload");
-            String fileName = UploadUtil.upload(file, realPath);
+            String fileName = UploadUtil.upload(file, realPath, doctorInfoService);
             fileName = "/upload/"+fileName;
             this.userFileService.apply(fileName);
         } catch (Exception e) {

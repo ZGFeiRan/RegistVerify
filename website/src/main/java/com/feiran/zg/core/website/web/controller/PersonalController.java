@@ -1,13 +1,12 @@
 package com.feiran.zg.core.website.web.controller;
 
 import com.feiran.zg.core.base.anno.RequireLogin;
-import com.feiran.zg.core.base.service.ISystemDictionaryService;
-import com.feiran.zg.core.base.service.IUserInfoService;
+import com.feiran.zg.core.base.domain.DoctorInfo;
+import com.feiran.zg.core.base.service.*;
 import com.feiran.zg.core.base.domain.SystemDictionaryItem;
 import com.feiran.zg.core.base.domain.UserInfo;
 import com.feiran.zg.core.base.page.PageResult;
 import com.feiran.zg.core.base.query.AccountFlowQueryObject;
-import com.feiran.zg.core.base.service.IAccountService;
 import com.feiran.zg.core.base.utils.JsonResult;
 import com.feiran.zg.core.base.utils.UserContext;
 import com.feiran.zg.core.business.service.IAccountFlowService;
@@ -27,7 +26,9 @@ import java.util.List;
 @Controller
 public class PersonalController {
     @Autowired
-    private IUserInfoService userInfoService;
+    private IDoctorInfoService doctorInfoService;
+    @Autowired
+    private IRealAuthService realAuthService;
 
 
     /**
@@ -36,7 +37,9 @@ public class PersonalController {
     @RequestMapping("/personal")
     @RequireLogin("个人中心首页")
     public String personal(Model model){
-        model.addAttribute("userInfo",userInfoService.getCurrent());
+        DoctorInfo doctorInfo = doctorInfoService.getCurrent();
+        model.addAttribute("doctorInfo",doctorInfo);
+        model.addAttribute("realAuth",this.realAuthService.getById(doctorInfo.getRealAuthId()));
         return "personal";
     }
 
@@ -50,7 +53,7 @@ public class PersonalController {
         JsonResult jsonResult = new JsonResult();
 
         try {
-            this.userInfoService.bindPhone(phoneNumber,verifyCode);
+            this.doctorInfoService.bindPhone(phoneNumber,verifyCode);
             jsonResult.setMsg("您为账号绑定的手机号: "+phoneNumber+" 已经绑定成功");
         } catch (Exception e) {
             e.printStackTrace();
@@ -69,7 +72,7 @@ public class PersonalController {
     @RequestMapping("/bindEmail")
     public String bindEmail(String uuid,Model model){
         try {
-            this.userInfoService.bindEmail(uuid);
+            this.doctorInfoService.bindEmail(uuid);
             model.addAttribute("success",true);
         } catch (Exception e) {
             e.printStackTrace();

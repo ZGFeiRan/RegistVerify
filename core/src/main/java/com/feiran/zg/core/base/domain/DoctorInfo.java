@@ -49,6 +49,8 @@ public class DoctorInfo {
     // 逻辑删除: 0代表没有删除，1代表已删除
     private int isDelete = 0;
 
+    private int version;
+
     @Override
     public String toString() {
         return "DoctorInfo [id=" + id + ", doctorName=" + doctorName + ", doctorSex=" + doctorSex + ", hospitalName="

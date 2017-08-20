@@ -10,6 +10,7 @@ com\feiran\zg\core\base\mapper\UserFileMapper.class
 com\feiran\zg\core\base\domain\VedioAuth.class
 com\feiran\zg\core\business\service\IMoneyWithdrawService.class
 com\feiran\zg\core\business\service\impl\MoneyWithdrawServiceImpl.class
+com\feiran\zg\core\base\domain\DoctorTitle.class
 com\feiran\zg\core\base\domain\UserFile.class
 com\feiran\zg\core\base\service\IDoctorVisitService.class
 com\feiran\zg\core\business\domain\PlatformBankInfo.class
@@ -17,6 +18,8 @@ com\feiran\zg\core\business\service\IPlatformBankInfoService.class
 com\feiran\zg\core\base\service\IEmailService.class
 com\feiran\zg\core\business\domain\RechargeOffLine.class
 com\feiran\zg\core\business\mapper\SystemAccountMapper.class
+com\feiran\zg\core\base\domain\DoctorDegree.class
+com\feiran\zg\core\base\mapper\DoctorTitleMapper.class
 com\feiran\zg\core\base\mapper\IpLogMapper.class
 com\feiran\zg\core\base\service\impl\EmailServiceImpl.class
 com\feiran\zg\core\business\query\BidRequestQueryObject.class
@@ -33,6 +36,7 @@ com\feiran\zg\core\base\domain\BaseAuditDomain.class
 com\feiran\zg\core\base\service\IRealAuthService.class
 com\feiran\zg\core\business\service\ISystemAccountService.class
 com\feiran\zg\core\base\service\impl\RealAuthServiceImpl.class
+com\feiran\zg\core\base\mapper\DoctorDegreeMapper.class
 com\feiran\zg\core\base\mapper\MailVerifyMapper.class
 com\feiran\zg\core\business\mapper\PaymentScheduleMapper.class
 com\feiran\zg\core\business\domain\Bid.class

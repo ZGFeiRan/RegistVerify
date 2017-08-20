@@ -1,6 +1,7 @@
 package com.feiran.zg.core.base.service.impl;
 
 import com.feiran.zg.core.base.domain.*;
+import com.feiran.zg.core.base.service.IDoctorInfoService;
 import com.feiran.zg.core.base.service.ILoginInfoService;
 import com.feiran.zg.core.base.mapper.IpLogMapper;
 import com.feiran.zg.core.base.mapper.LoginInfoMapper;
@@ -23,10 +24,8 @@ import java.util.Map;
 public class LoginInfoServiceImpl implements ILoginInfoService {
     @Autowired
     private LoginInfoMapper loginInfoMapper;
-//    @Autowired
-//    private IUserInfoService userInfoService;
-//    @Autowired
-//    private IAccountService accountService;
+    @Autowired
+    private IDoctorInfoService doctorInfoService;
     @Autowired
     private IpLogMapper ipLogMapper;
 
@@ -44,7 +43,7 @@ public class LoginInfoServiceImpl implements ILoginInfoService {
             loginInfo.setPassword(MD5.encode(password));
             loginInfo.setState(LoginInfo.STATE_NORMAL);// 设置用户的状态为正常状态,如果账户有异常就设置为锁定状态
             loginInfo.setUserType(LoginInfo.USER_CLIENT);// 设置用户为前台客户,而不是后台管理人员
-            loginInfoMapper.insert(loginInfo);
+            loginInfoMapper.insert(loginInfo);// 把新注册用户的登录信息入库
 
             // 创建属于该用户的用户信息
 //            UserInfo userInfo = new UserInfo();
@@ -54,7 +53,8 @@ public class LoginInfoServiceImpl implements ILoginInfoService {
             if (loginInfo.getUserType()==LoginInfo.USER_CLIENT){// 只为医生客户创建医生信息对象，后台管理员不需要对应的医生对象信息。
                 // 创建用户信息
                 DoctorInfo doctorInfo = new DoctorInfo();
-                doctorInfo.setId(loginInfo.getId());
+                doctorInfo.setId(loginInfo.getId());// 设置doctorInfo的id和loginInfo的id一直
+                doctorInfoService.insert(doctorInfo);// 入库
             }
         }
     }
@@ -76,6 +76,9 @@ public class LoginInfoServiceImpl implements ILoginInfoService {
         // 根据用户名和密码查询LoginInfo
         LoginInfo loginInfo = this.loginInfoMapper.login(userName,MD5.encode(password),userType);
         if (loginInfo!=null){
+            if (loginInfo.getLastLoginDateTime()==null || "".equals(loginInfo.getLastLoginDateTime())){
+                loginInfo.setLastLoginDateTime(new Date());
+            }
             // 如果查询到,则登录成功,登录成功后把LoginInfo放到Session中
             UserContext.putCurrent(loginInfo);
             // 登录成功的话,设置IpLog对象的状态为success

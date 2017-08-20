@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class DoctorVisitServiceImpl implements IDoctorVisitService {
     @Override
     public boolean canApply(DoctorInfo doctorInfo) {
-        // 判断当前用户是否已经实名认证
-        return doctorInfo.getIsRealAuth();
+        // 判断当前用户是否已经实名认证 并 完善了个人信息
+        return doctorInfo.getIsRealAuth() && doctorInfo.getIsBasicInfo();
     }
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.feiran.zg.core.base.mapper.DoctorTitleMapper" >
+  <resultMap id="BaseResultMap" type="com.feiran.zg.core.base.domain.DoctorTitle" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="doctor_title" property="doctorTitle" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from doctortitle
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.feiran.zg.core.base.domain.DoctorTitle" useGeneratedKeys="true" keyProperty="id" >
+    insert into doctortitle (doctor_title)
+    values (#{doctorTitle,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.feiran.zg.core.base.domain.DoctorTitle" >
+    update doctortitle
+    set doctor_title = #{doctorTitle,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, doctor_title
+    from doctortitle
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, doctor_title
+    from doctortitle
+  </select>
+</mapper>

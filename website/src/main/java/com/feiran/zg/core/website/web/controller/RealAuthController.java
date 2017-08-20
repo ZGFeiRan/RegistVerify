@@ -68,7 +68,7 @@ public class RealAuthController extends BaseController{
     public String realAuthUpload(MultipartFile file){
         String dic = "/upload";
         String basePath = this.servletContext.getRealPath(dic);
-        String fileName = UploadUtil.upload(file, basePath);
+        String fileName = UploadUtil.upload(file, basePath, doctorInfoService);
         return dic+"/"+fileName;
     }
 }

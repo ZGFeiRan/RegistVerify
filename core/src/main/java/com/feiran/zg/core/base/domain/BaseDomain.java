@@ -9,5 +9,6 @@ import lombok.Setter;
  */
 @Setter@Getter
 abstract public class BaseDomain {
+    // id值
     protected Long id;
 }

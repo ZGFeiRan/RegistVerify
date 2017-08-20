@@ -56,7 +56,7 @@ public class DoctorVisitController {
             return "redirect:/doctorVisit.do";
         }else {
             //如果用户尚未认证、认证处于审核过程中 或 认证被拒绝的时候，跳转掏提醒页面
-            RealAuth realAuth = realAuthService.getCurrent();
+            RealAuth realAuth = this.realAuthService.getById(current.getRealAuthId());
             model.addAttribute("realAuth",realAuth);
             model.addAttribute("doctorInfo",current);
             return "doctor_visit_apply_result";

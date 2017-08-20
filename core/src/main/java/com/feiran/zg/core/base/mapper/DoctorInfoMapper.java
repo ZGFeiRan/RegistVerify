@@ -13,4 +13,6 @@ public interface DoctorInfoMapper {
     List<DoctorInfo> selectAll();
 
     int updateByPrimaryKey(DoctorInfo record);
+
+
 }
