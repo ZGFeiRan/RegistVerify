@@ -45,23 +45,25 @@
 
   <update id="updateByPrimaryKey" parameterType="com.feiran.zg.core.base.domain.DoctorInfo" >
     update doctorinfo
-    set version = version + 1,
-      doctor_name = #{doctorName,jdbcType=VARCHAR},
-      doctor_sex = #{doctorSex,jdbcType=CHAR},
-      hospital_name = #{hospitalName,jdbcType=VARCHAR},
-      offices_name = #{officesName,jdbcType=VARCHAR},
-      doctor_img = #{doctorImg,jdbcType=VARCHAR},
-      doctor_title = #{doctorTitle,jdbcType=VARCHAR},
-      teach_title = #{teachTitle,jdbcType=VARCHAR},
-      doctor_administrative = #{doctorAdministrative,jdbcType=VARCHAR},
-      doctor_degree = #{doctorDegree,jdbcType=VARCHAR},
-      doctor_forte = #{doctorForte,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      phone_number = #{phoneNumber,jdbcType=VARCHAR},
-      realAuth_id = #{realAuthId,jdbcType=BIGINT},
-      bit_state = #{bitState,jdbcType=BIGINT},
-      is_delete = #{isDelete,jdbcType=TINYINT},
-      doctor_about = #{doctorAbout,jdbcType=LONGVARCHAR}
+      <set>
+        <if test="doctorName != null and doctorName!=''">doctor_name = #{doctorName,jdbcType=VARCHAR},</if>
+        <if test="doctorSex != null and doctorSex!=''">doctor_sex = #{doctorSex,jdbcType=CHAR},</if>
+        <if test="hospitalName != null and hospitalName!=''">hospital_name = #{hospitalName,jdbcType=VARCHAR},</if>
+        <if test="officesName != null and officesName!=''">offices_name = #{officesName,jdbcType=VARCHAR},</if>
+        <if test="doctorImg != null and doctorImg!=''">doctor_img = #{doctorImg,jdbcType=VARCHAR},</if>
+        <if test="doctorTitle != null and doctorTitle!=''">doctor_title = #{doctorTitle,jdbcType=VARCHAR},</if>
+        <if test="teachTitle != null and teachTitle!=''">teach_title = #{teachTitle,jdbcType=VARCHAR},</if>
+        <if test="doctorAdministrative != null and doctorAdministrative!=''">doctor_administrative = #{doctorAdministrative,jdbcType=VARCHAR},</if>
+        <if test="doctorDegree != null and doctorDegree!=''">doctor_degree = #{doctorDegree,jdbcType=VARCHAR},</if>
+        <if test="doctorForte != null and doctorForte!=''">doctor_forte = #{doctorForte,jdbcType=VARCHAR},</if>
+        <if test="email != null and email!=''">email = #{email,jdbcType=VARCHAR},</if>
+        <if test="phoneNumber != null and phoneNumber!=''"> phone_number = #{phoneNumber,jdbcType=VARCHAR},</if>
+        <if test="realAuthId != null and realAuthId!=''">realAuth_id = #{realAuthId,jdbcType=BIGINT},</if>
+        <if test="bitState != null and bitState!=''">bit_state = #{bitState,jdbcType=BIGINT},</if>
+        <if test="isDelete != null and isDelete!=''">is_delete = #{isDelete,jdbcType=TINYINT},</if>
+        <if test="doctorAbout != null and doctorAbout!=''">doctor_about = #{doctorAbout,jdbcType=LONGVARCHAR},</if>
+        version = version + 1
+      </set>
     where id = #{id,jdbcType=BIGINT} AND version = #{version}
   </update>
 
