@@ -17,6 +17,7 @@ C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\z
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\mapper\DoctorTitleMapper.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\mapper\LoginInfoMapper.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\vo\VerifyCodeVO.java
+C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\domain\Position.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\utils\JsonResult.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\business\service\impl\PlatformBankInfoServiceImpl.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\business\domain\RechargeOffLine.java
@@ -34,14 +35,18 @@ C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\z
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\domain\SystemDictionary.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\business\mapper\AccountFlowMapper.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\service\impl\SystemDictionaryServiceImpl.java
+C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\service\impl\AreaServiceImpl.java
+C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\web\filter\SysncImageFilter.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\business\service\impl\RechargeOffLineServiceImpl.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\service\impl\UserInfoServiceImpl.java
+C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\mapper\PositionMapper.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\business\mapper\PaymentScheduleDetailMapper.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\service\IVedioAuthService.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\service\ISystemDictionaryService.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\service\impl\BackDoorServiceImpl.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\service\IRealAuthService.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\domain\DoctorDegree.java
+C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\domain\Area.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\service\IDoctorVisitService.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\business\mapper\BidRequestAuditHistoryMapper.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\service\impl\RealAuthServiceImpl.java
@@ -85,6 +90,7 @@ C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\z
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\business\service\IMoneyWithdrawService.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\domain\UserInfo.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\business\util\DecimalFormatUtil.java
+C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\mapper\AreaMapper.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\service\IIpLogService.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\business\domain\BidRequest.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\query\RealAuthQueryObject.java
@@ -97,6 +103,7 @@ C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\z
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\mapper\DoctorInfoMapper.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\query\QueryObject.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\business\util\CalculatetUtil.java
+C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\service\IAreaService.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\service\IUserFileService.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\business\service\impl\AccountFlowServiceImpl.java
 C:\Users\FeiRan_ZG\Desktop\hospital\RegistVerify\core\src\main\java\com\feiran\zg\core\base\service\IDoctorInfoService.java

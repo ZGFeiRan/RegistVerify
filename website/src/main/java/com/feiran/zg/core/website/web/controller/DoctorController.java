@@ -77,8 +77,7 @@ public class DoctorController {
     public String doctorInfoUpload(MultipartFile file){
         String dic = "/upload";
         String basePath = this.servletContext.getRealPath(dic);
-        DoctorInfo current = doctorInfoService.getCurrent();
-        String fileName = UploadUtil.upload(file, basePath, doctorInfoService);
+        String fileName = UploadUtil.upload(file, basePath);
         return dic+"/"+fileName;
     }
 }

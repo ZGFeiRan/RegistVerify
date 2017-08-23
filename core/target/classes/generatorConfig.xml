@@ -81,7 +81,7 @@
 				value=""/> -->
 		</javaClientGenerator>
 
-		<table tableName="doctordegree" domainObjectName="DoctorDegree"
+		<table tableName="area" domainObjectName="Area"
 			   enableSelectByExample="true" enableDeleteByExample="true" enableCountByExample="true" enableUpdateByExample="true">
 			<!-- 参考 javaModelGenerator 的 constructorBased属性 -->
 			<property name="constructorBased" value="false" />

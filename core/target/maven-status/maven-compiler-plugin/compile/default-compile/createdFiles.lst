@@ -13,7 +13,9 @@ com\feiran\zg\core\business\service\impl\MoneyWithdrawServiceImpl.class
 com\feiran\zg\core\base\domain\DoctorTitle.class
 com\feiran\zg\core\base\domain\UserFile.class
 com\feiran\zg\core\base\service\IDoctorVisitService.class
+com\feiran\zg\core\base\mapper\AreaMapper.class
 com\feiran\zg\core\business\domain\PlatformBankInfo.class
+com\feiran\zg\core\base\service\impl\AreaServiceImpl.class
 com\feiran\zg\core\business\service\IPlatformBankInfoService.class
 com\feiran\zg\core\base\service\IEmailService.class
 com\feiran\zg\core\business\domain\RechargeOffLine.class
@@ -27,6 +29,7 @@ com\feiran\zg\core\base\utils\MD5.class
 com\feiran\zg\core\base\service\IDoctorInfoService.class
 com\feiran\zg\core\business\mapper\RechargeOffLineMapper.class
 com\feiran\zg\core\base\domain\UserInfo.class
+com\feiran\zg\core\base\web\filter\SysncImageFilter.class
 com\feiran\zg\core\base\service\impl\VerifyCodeServiceImpl.class
 com\feiran\zg\core\base\service\impl\AccountServiceImpl.class
 com\feiran\zg\core\business\domain\PaymentSchedule.class
@@ -51,8 +54,10 @@ com\feiran\zg\core\business\service\impl\MessageServiceImpl.class
 com\feiran\zg\core\base\service\IVedioAuthService.class
 com\feiran\zg\core\business\domain\BidRequest.class
 com\feiran\zg\core\business\service\impl\UserBankInfoServiceImpl.class
+com\feiran\zg\core\base\mapper\PositionMapper.class
 com\feiran\zg\core\business\domain\MoneyWithdraw.class
 com\feiran\zg\core\base\domain\SystemDictionary.class
+com\feiran\zg\core\base\service\IAreaService.class
 com\feiran\zg\core\business\service\IRechargeOffLineService.class
 com\feiran\zg\core\business\service\impl\MailServiceImpl.class
 com\feiran\zg\core\base\query\IpLogQueryObject.class
@@ -64,6 +69,7 @@ com\feiran\zg\core\base\service\impl\DoctorInfoServiceImpl.class
 com\feiran\zg\core\business\mapper\BidRequestAuditHistoryMapper.class
 com\feiran\zg\core\base\domain\MailVerify.class
 com\feiran\zg\core\business\mapper\BidRequestMapper.class
+com\feiran\zg\core\base\domain\Position.class
 com\feiran\zg\core\base\service\IIpLogService.class
 com\feiran\zg\core\business\domain\UserBankInfo.class
 com\feiran\zg\core\business\query\RechargeOffLineQueryObject.class
@@ -121,3 +127,4 @@ com\feiran\zg\core\base\utils\UserContext.class
 com\feiran\zg\core\business\domain\PaymentScheduleDetail.class
 com\feiran\zg\core\business\query\PaymentScheduleQueryObject.class
 com\feiran\zg\core\business\mapper\UserBankInfoMapper.class
+com\feiran\zg\core\base\domain\Area.class

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.feiran.zg.core.base.mapper.AreaMapper" >
+  <resultMap id="BaseResultMap" type="com.feiran.zg.core.base.domain.Area" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="level" property="level" jdbcType="BIT" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from area
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.feiran.zg.core.base.domain.Area" useGeneratedKeys="true" keyProperty="id" >
+    insert into area (area_name, parent_id, level
+      )
+    values (#{areaName,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, #{level,jdbcType=BIT}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.feiran.zg.core.base.domain.Area" >
+    update area
+    set area_name = #{areaName,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      level = #{level,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, area_name, parent_id, level
+    from area
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, area_name, parent_id, level
+    from area
+  </select>
+
+  <select id="selectByParentKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    select id, area_name, parent_id, level
+    from area WHERE parent_id = ${parentId}
+  </select>
+</mapper>

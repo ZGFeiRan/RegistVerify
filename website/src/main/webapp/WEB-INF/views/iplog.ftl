@@ -56,11 +56,13 @@
 						<input type="hidden" id="currentPage" name="currentPage" value="1" />
 						<div class="form-group">
 							<label>时间范围</label>
-							<input type="text" class="form-control beginDate" name="beginDate" value='${(qo.beginDate?string("yyyy-MM-dd"))!""}'/>
+							<input type="text" class="form-control beginDate" name="beginDate" value='${(qo.beginDate?string("yyyy-MM-dd"))!""}'
+                                   onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:true});"/>
 						</div>
 						<div class="form-group">
 							<label></label>
-							<input type="text" class="form-control endDate" name="endDate" value='${(qo.endDate?string("yyyy-MM-dd"))!""}'/>
+							<input type="text" class="form-control endDate" name="endDate" value='${(qo.endDate?string("yyyy-MM-dd"))!""}'
+                                   onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:true});"/>
 						</div>
 						<div class="form-group">
 						    <label>状态</label>

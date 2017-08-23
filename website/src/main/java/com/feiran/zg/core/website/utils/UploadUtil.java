@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.PostConstruct;
+
 /**
  * 上传工具
  * 
@@ -23,8 +25,20 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Component
 public class UploadUtil {
-//	@Autowired
-//	private static IDoctorInfoService doctorInfoService;
+	@Autowired
+	private IDoctorInfoService doctorInfoService;
+
+	private static UploadUtil  uploadUtil ;
+
+	public void setDoctorInfoService(IDoctorInfoService  doctorInfoService) {
+		this.doctorInfoService = doctorInfoService;
+	}
+
+	@PostConstruct
+	public void init() {
+		uploadUtil = this;
+		uploadUtil.doctorInfoService = this.doctorInfoService;   // 初使化时将已静态化的testService实例化
+	}
 
 	/**
 	 * 处理文件上传
@@ -34,7 +48,7 @@ public class UploadUtil {
 	 *            存放文件的目录的绝对路径 servletContext.getRealPath("/upload")
 	 * @return
 	 */
-	public static String upload(MultipartFile file, String basePath, IDoctorInfoService doctorInfoService) {
+	public static String upload(MultipartFile file, String basePath) {
 		// 获取从页面传递过来的文件的文件名
 		String orgFileName = file.getOriginalFilename();
 		// 拼接上传文件的名字
@@ -52,6 +66,8 @@ public class UploadUtil {
 //			fileName = publicFile.getAbsolutePath();
 //			DoctorInfo currentDoctorInfo = doctorInfoService.getCurrent();
 //			currentDoctorInfo.setDoctorImg(publicFile.getAbsolutePath());
+//			DoctorInfo current = uploadUtil.doctorInfoService.getCurrent();
+//			current.setDoctorImg(publicFile.getAbsolutePath());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

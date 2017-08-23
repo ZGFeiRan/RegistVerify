@@ -58,7 +58,7 @@ public class UserFileController extends BaseController {
     public String userFileUpload(MultipartFile file){
         try {
             String realPath = this.servletContext.getRealPath("/upload");
-            String fileName = UploadUtil.upload(file, realPath, doctorInfoService);
+            String fileName = UploadUtil.upload(file, realPath);
             fileName = "/upload/"+fileName;
             this.userFileService.apply(fileName);
         } catch (Exception e) {
