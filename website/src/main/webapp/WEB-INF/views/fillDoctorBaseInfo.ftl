@@ -7,6 +7,9 @@
 		<link type="text/css" rel="stylesheet" href="/css/account.css" />
         <script type="text/javascript" src="/js/plugins/uploadify/jquery.uploadify.min.js"></script>
 		<script type="text/javascript" src="/js/plugins/jquery.form.js"></script>
+		<script type="text/javascript" src="/js/jquery/jquery-2.1.3.js"></script>
+		<script type="text/javascript" src="/js/jquery/jquery-2.1.3.min.js"></script>
+		<script type="text/javascript" src="/js/widget-master/code/jquery.inputFormat.js"></script>
         <style type="text/css">
             #doctorBaseInfoForm input ,#doctorBaseInfoForm select{
                 width: 260px;
@@ -46,7 +49,10 @@
         </style>
         <script type="text/javascript">
 			$(function(){
-				//AJAX提交表单
+				// 格式化输入框
+                $('input[name="phoneNumber"]').inputFormat({type:'mobile'});
+
+                //AJAX提交表单
 				$("#doctorBaseInfoForm").ajaxForm(function(){
 						window.location.reload();
 				});
@@ -149,7 +155,7 @@
 									性别
 								</label>
 								<div class="col-sm-8">
-									<select class="form-control" id="doctor_sex" name="doctorSex" style="width: 60px" autocomplate="off">
+									<select class="form-control" id="doctor_sex" name="doctorSex" style="width: 70px" autocomplate="off">
 										<option value="1">男</option>
 										<option value="0">女</option>
 									</select>

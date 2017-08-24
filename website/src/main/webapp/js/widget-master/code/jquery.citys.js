@@ -211,6 +211,7 @@
                         options.province = $(this).find('option:selected').data('code')||0; //选中节点的区划代码
                         options.city = 0;
                         options.area = 0;
+                        options.town = 0;
                         updateData();
                         format.city();
                         options.onChange(_api.getInfo());
@@ -218,6 +219,7 @@
                     $city.on('change',function(){
                         options.city = $(this).find('option:selected').data('code')||0; //选中节点的区划代码
                         options.area = 0;
+                        options.town = 0;
                         updateData();
                         format.area();
                         options.onChange(_api.getInfo());
