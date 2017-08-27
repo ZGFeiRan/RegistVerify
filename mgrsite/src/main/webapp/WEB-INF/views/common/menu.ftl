@@ -2,8 +2,8 @@
 	<li class="list-group-item">
 		<a href="javaScript:;" data-toggle="collapse" data-target="#usermanage_detail"><span>用户管理</span></a>
 		<ul class="in" id="usermanage_detail">
-			<li class=""><a href="/real_auth_list.do">平台用户管理</a></li>
-			<li class=""><a href="/recharge_offline_list.do">员工管理</a></li>
+			<li class=""><a href="javaScript:;">平台用户管理</a></li>
+			<li class=""><a href="javaScript:;">员工管理</a></li>
 		</ul>
 	</li>
 	<li class="list-group-item">
@@ -37,10 +37,10 @@
 			<span>平台管理</span>
 		</a>
 		<ul class="in" id="systemmanage_detail">
-			<li class="companyBank"><a href="/companyBank_list.do">平台账号管理</a></li>
-			<li><a href="/real_auth_list.do">系统账户流水</a></li>
-			<li><a href="/bid_request_list.do"> <span>系统设置</span></a></li>
-			<li><a href="/bid_request_list.do"> <span>企业资讯</span></a></li>
+			<#--<li class="companyBank"><a href="/companyBank_list.do">平台账号管理</a></li>-->
+			<#--<li><a href="/real_auth_list.do">系统账户流水</a></li>-->
+			<li><a href="javaScript:;"> <span>系统设置</span></a></li>
+			<li><a href="javaScript:;"> <span>企业资讯</span></a></li>
 			<li><span><a href="javaScript:;">友情链接</a></span></li>
 			<li><span><a href="javaScript:;">广告设置</a></span></li>
 		</ul>
