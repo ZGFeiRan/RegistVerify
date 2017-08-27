@@ -103,8 +103,7 @@ public class RealAuthServiceImpl implements IRealAuthService {
                     applier.setState(BitStatesUtils.OP_REAL_AUTH);
                     //   2、设置实名认证的相关信息
                     applier.setDoctorName(realAuth.getRealName());// 设置医生的真是姓名
-//                    applier.setRealName(realAuth.getRealName());
-//                    applier.setIdNumber(realAuth.getIdNumber());
+                    applier.setDoctorSex(realAuth.getSex()==1?"男":"女");// 设置医生的性别
 
                     // 创建实名认证成功对象,并发布实名认证成功这个事件
                     RealAuthSuccessEvetn evetn = new RealAuthSuccessEvetn(this, realAuth);

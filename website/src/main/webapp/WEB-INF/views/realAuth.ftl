@@ -204,8 +204,8 @@
 						        	<label class="col-sm-4  control-label" for="sex">性别：</label>
 					        		<div class="col-sm-8">
 						        		<select id="sex" class="form-control" name="sex" size="1">
-											<option value="0">男</option>
-											<option value="1">女</option>
+											<option value="0">女</option>
+											<option value="1">男</option>
 										</select>
 						        	</div>
 						        </div>

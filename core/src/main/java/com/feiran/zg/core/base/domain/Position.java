@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.apache.ibatis.type.Alias;
 
 /**
  * Created by FeiRan_ZG on 2017/8/22.
@@ -14,9 +15,9 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Alias("position")
 public class Position {
-    private String id;
-
+//    private String id;
     private String province;
 
     private String city;

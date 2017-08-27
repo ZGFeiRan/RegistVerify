@@ -18,13 +18,19 @@
 			<div class="el-tip-info">
 				<h3>温馨提示</h3>
 				<#if !doctorInfo.isBasicInfo>
-					<#assign currentNav="doctorInfo" />
-                    <p>您目尚未完善个人信息，请先完善个人信息，谢谢！</p>
-                    <p><a href="/fillDoctorBaseInfo.do">马上完善个人信息</a> </p>
+					<div class="col-sm-3">
+						<#assign currentNav="doctorInfo" />
+						<#include "common/leftmenu-tpl.ftl" />
+						<p>您目尚未完善个人信息，请先完善个人信息，谢谢！</p>
+						<p><a href="/fillDoctorBaseInfo.do">马上完善个人信息</a> </p>
+					</div>
 				<#elseif !doctorInfo.isRealAuth>
-					<#assign currentNav="realAuth" />
-                    <p>您目尚未进行实名认证，请先进行实名认证，谢谢！</p>
-                    <p><a href="/realAuth.do">马上实名认证</a> </p>
+					<div class="col-sm-3">
+						<#assign currentNav="realAuth" />
+						<#include "common/leftmenu-tpl.ftl" />
+						<p>您目尚未进行实名认证，请先进行实名认证，谢谢！</p>
+						<p><a href="/realAuth.do">马上实名认证</a> </p>
+					</div>
 				<#else>
 					<#if realAuth.state==0>
                         <p>您的实名认证正处于审核状态，我们会在一到两个工作日内审核完毕，请您耐心等待，谢谢！</p>

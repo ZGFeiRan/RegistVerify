@@ -136,6 +136,7 @@ public class DoctorInfoServiceImpl implements IDoctorInfoService{
         current.setDoctorDegree(doctorInfo.getDoctorDegree());
         current.setDoctorForte(doctorInfo.getDoctorForte());
         current.setDoctorTitle(doctorInfo.getDoctorTitle());
+        current.setDoctorImg(doctorInfo.getDoctorImg());
         // 如果当前用户没有填写基本资料,则绑定一个
         if (!doctorInfo.getIsBasicInfo()){
             doctorInfo.setState(BitStatesUtils.OP_BASIC_INFO);

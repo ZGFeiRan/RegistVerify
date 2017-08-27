@@ -34,10 +34,12 @@ com\feiran\zg\core\base\service\impl\VerifyCodeServiceImpl.class
 com\feiran\zg\core\base\service\impl\AccountServiceImpl.class
 com\feiran\zg\core\business\domain\PaymentSchedule.class
 com\feiran\zg\core\base\service\impl\LoginInfoServiceImpl.class
+com\feiran\zg\core\base\service\IVisitInfoService.class
 com\feiran\zg\core\base\query\SystemDictionaryQueryObject.class
 com\feiran\zg\core\base\domain\BaseAuditDomain.class
 com\feiran\zg\core\base\service\IRealAuthService.class
 com\feiran\zg\core\business\service\ISystemAccountService.class
+com\feiran\zg\core\base\domain\VisitInfo.class
 com\feiran\zg\core\base\service\impl\RealAuthServiceImpl.class
 com\feiran\zg\core\base\mapper\DoctorDegreeMapper.class
 com\feiran\zg\core\base\mapper\MailVerifyMapper.class
@@ -60,8 +62,10 @@ com\feiran\zg\core\base\domain\SystemDictionary.class
 com\feiran\zg\core\base\service\IAreaService.class
 com\feiran\zg\core\business\service\IRechargeOffLineService.class
 com\feiran\zg\core\business\service\impl\MailServiceImpl.class
+com\feiran\zg\core\base\service\impl\VisitInfoServiceImpl.class
 com\feiran\zg\core\base\query\IpLogQueryObject.class
 com\feiran\zg\core\base\service\ILoginInfoService.class
+com\feiran\zg\core\base\mapper\VisitInfoMapper.class
 com\feiran\zg\core\base\query\QueryObject.class
 com\feiran\zg\core\base\query\VedioAuthQueryObject.class
 com\feiran\zg\core\base\service\impl\IpLogServiceImpl.class
@@ -116,6 +120,7 @@ com\feiran\zg\core\base\mapper\RealAuthMapper.class
 com\feiran\zg\core\business\service\impl\AccountFlowServiceImpl.class
 com\feiran\zg\core\business\service\IUserBankInfoService.class
 com\feiran\zg\core\business\domain\SystemAccount.class
+com\feiran\zg\core\base\query\VisitInfoQueryObject.class
 com\feiran\zg\core\base\service\impl\DoctorVisitServiceImpl.class
 com\feiran\zg\core\business\mapper\SystemAccountFlowMapper.class
 com\feiran\zg\core\base\utils\BitStatesUtils.class

@@ -7,9 +7,6 @@
 		<link type="text/css" rel="stylesheet" href="/css/account.css" />
         <script type="text/javascript" src="/js/plugins/uploadify/jquery.uploadify.min.js"></script>
 		<script type="text/javascript" src="/js/plugins/jquery.form.js"></script>
-		<script type="text/javascript" src="/js/jquery/jquery-2.1.3.js"></script>
-		<script type="text/javascript" src="/js/jquery/jquery-2.1.3.min.js"></script>
-		<script type="text/javascript" src="/js/widget-master/code/jquery.inputFormat.js"></script>
         <style type="text/css">
             #doctorBaseInfoForm input ,#doctorBaseInfoForm select{
                 width: 260px;
@@ -49,13 +46,12 @@
         </style>
         <script type="text/javascript">
 			$(function(){
-				// 格式化输入框
-                $('input[name="phoneNumber"]').inputFormat({type:'mobile'});
-
                 //AJAX提交表单
-				$("#doctorBaseInfoForm").ajaxForm(function(){
-						window.location.reload();
-				});
+                $("#doctorBaseInfoForm").ajaxForm(function(){
+                    $.messager.confirm("提示","保存成功!",function(){
+                        window.location.reload();
+                    })
+                });
 
 				//上传证件照
 				$("#uploadBtn1").uploadify({
@@ -75,7 +71,7 @@
 						$("#uploadImage1").val(data);
 					}
 				});
-			})
+			});
 		</script>		
 	</head>
 	<body>
@@ -124,6 +120,22 @@
 									</p>
 								</div>
 							</div>
+
+							<div class="form-group">
+								<label class="col-sm-4 control-label">
+									性别
+								</label>
+								<div class="col-sm-8">
+                                    <p class="form-control-static">
+										<#if (doctorInfo.isRealAuth)>
+										${doctorInfo.doctorSex}
+										<#else>
+											未实名认证
+											<a href="/realAuth.do">[马上认证]</a>
+										</#if>
+                                    </p>
+								</div>
+							</div>
 							
 							<div class="form-group">
 								<label class="col-sm-4 control-label">
@@ -152,37 +164,11 @@
 							
 							<div class="form-group">
 								<label class="col-sm-4 control-label">
-									性别
-								</label>
-								<div class="col-sm-8">
-									<select class="form-control" id="doctor_sex" name="doctorSex" style="width: 70px" autocomplate="off">
-										<option value="1">男</option>
-										<option value="0">女</option>
-									</select>
-									<script type="text/javascript">
-										$("#doctor_sex option[value=${(doctorInfo.doctorSex)!1}]").attr("selected",true);
-									</script>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label class="col-sm-4 control-label">
 									所属医院:
 								</label>
                                 <div class="col-sm-8">
                                     <input type="text" name="hospitalName" autocomplete="off" class="form-control" value="${(doctorInfo.hospitalName)!''}">
                                 </div>
-								<#--<div class="col-sm-8">-->
-
-									<#--<select class="form-control" id="hospital_name" name="hospital_name" style="width: 180px" autocomplate="off" >-->
-										<#--<#list incomeGrades as item>-->
-											<#--<option value="${item.id}">${item.title}</option>-->
-										<#--</#list>-->
-									<#--</select>-->
-									<#--<script type="text/javascript">-->
-										<#--$("#incomeGrade option[value=${(doctorInfo.incomeGrade.id)!-1}]").attr("selected",true);-->
-									<#--</script>-->
-								<#--</div>-->
 							</div>
 
 							<div class="form-group">
@@ -202,7 +188,7 @@
 										<div>
 											<a href="javascript:;" id="uploadBtn1" >上传证件照片</a>
 										</div>
-										<img alt="" src="" class="uploadImg" id="uploadImg1" />
+										<img alt="" src="${(doctorInfo.doctorImg)!''}" class="uploadImg" id="uploadImg1" />
 										<input type="hidden" name="doctorImg" id="uploadImage1" />
 									</div>
                                 </div>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.feiran.zg.core.base.mapper.VisitInfoMapper">
+  <resultMap id="BaseResultMap" type="com.feiran.zg.core.base.domain.VisitInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="publisher_id" jdbcType="BIGINT" property="publisherId" />
+    <result column="begin_date" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+    <!--<result column="town" jdbcType="VARCHAR" property="town" />-->
+    <result column="toplimit" jdbcType="INTEGER" property="toplimit" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="publish_date" jdbcType="TIMESTAMP" property="publishDate" />
+    <result column="is_Overdue" jdbcType="INTEGER" property="isOverdue" />
+    <association property="position" column="town" javaType="position"
+                 select="com.feiran.zg.core.base.mapper.PositionMapper.selectByCountryside"/>
+    <!--<association property="position" column="town" javaType="position" columnPrefix="po_">-->
+      <!--<result column="province" property="province"/>-->
+      <!--<result column="city" property="city"/>-->
+      <!--<result column="county" property="county"/>-->
+      <!--<result column="countryside" property="countryside"/>-->
+    <!--</association>-->
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from visitinfo
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" keyProperty="id" parameterType="com.feiran.zg.core.base.domain.VisitInfo" useGeneratedKeys="true">
+    insert into visitinfo (id,publisher_id, begin_date, end_date,
+      town, toplimit, version, 
+      publish_date, is_Overdue)
+    values (#{id,jdbcType=VARCHAR},#{publisherId,jdbcType=BIGINT}, #{beginDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP},
+      #{town,jdbcType=VARCHAR}, #{toplimit,jdbcType=INTEGER}, #{version,jdbcType=INTEGER},
+      #{publishDate,jdbcType=TIMESTAMP}, #{isOverdue,jdbcType=INTEGER})
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="com.feiran.zg.core.base.domain.VisitInfo">
+    update visitinfo
+    <set>
+      <if test="publisher_id != null and publisher_id != ''">
+        publisher_id = #{publisherId,jdbcType=BIGINT},
+      </if>
+      <if test="begin_date != null and begin_date !=''">
+        begin_date = #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="end_date != null and end_date != ''">
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="town != null and town != ''">
+        town = #{town,jdbcType=VARCHAR},
+      </if>
+      <if test="toplimit != null and toplimit != ''">
+        toplimit = #{toplimit,jdbcType=INTEGER},
+      </if>
+      <if test=" publish_date!=null and != ''">
+        publish_date = #{publishDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isOverdue != null and isOverdue != ''">
+        is_Overdue = #{isOverdue,jdbcType=INTEGER}
+      </if>
+    </set>
+    version = version + 1
+    where id = #{id,jdbcType=VARCHAR} AND version = #{version,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, publisher_id, begin_date, end_date, town, toplimit, version, publish_date, 
+    is_Overdue
+    from visitinfo
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, publisher_id, begin_date, end_date, town, toplimit, version, publish_date, 
+    is_Overdue
+    from visitinfo
+  </select>
+
+ <select id="getDoctorVisitInfosByDoctorId" resultMap="BaseResultMap">
+    select id, publisher_id, begin_date, end_date, town, toplimit, version, publish_date,
+    is_Overdue
+    from visitinfo WHERE publisher_id = #{publisher_id,jdbcType=BIGINT}
+  </select>
+
+
+  <!--高级查询加分也-->
+  <sql id="base_sql">
+    <where>
+      <if test="visitBeginDate!=null">
+        AND begin_date &lt;= #{visitBeginDate}
+      </if>
+      <if test="visitEndDate!=null">
+        AND end_date &gt;= #{visitEndDate}
+      </if>
+      <if test="beginPublishDate!=null">
+        AND publish_date &gt;= #{beginPublishDate}
+      </if>
+      <if test="endPublishDate!=null">
+        AND publish_date &lt;= #{endPublishDate}
+      </if>
+      <if test="publisherId!=null">
+        AND publisher_id = #{publisherId}
+      </if>
+      <if test="town!=null">
+        AND town = #{town}
+      </if>
+      <if test="isOverdue!=null">
+        AND is_Overdue = #{isOverdue}
+      </if>
+    </where>
+  </sql>
+
+  <sql id="base_sql1">
+    <where>
+      v.town = w.id
+      <if test="visitBeginDate!=null">
+        AND begin_date &lt;= #{visitBeginDate}
+      </if>
+      <if test="visitEndDate!=null">
+        AND end_date &gt;= #{visitEndDate}
+      </if>
+      <if test="beginPublishDate!=null">
+        AND publish_date &gt;= #{beginPublishDate}
+      </if>
+      <if test="endPublishDate!=null">
+        AND publish_date &lt;= #{endPublishDate}
+      </if>
+      <if test="publisherId!=null">
+        AND publisher_id = #{publisherId}
+      </if>
+      <if test="town!=null">
+        AND town = #{town}
+      </if>
+      <if test="isOverdue!=null">
+        AND is_Overdue = #{isOverdue}
+      </if>
+
+    </where>
+  </sql>
+
+  <select id="quetryForCount" resultType="int">
+    SELECT COUNT(*)
+    FROM visitinfo
+    <include refid="base_sql"/>
+  </select>
+
+  <select id="queryForListDate" resultMap="BaseResultMap">
+    SELECT v.id, v.publisher_id, v.begin_date, v.end_date, v.town, v.toplimit, v.version, v.publish_date,
+    v.is_Overdue
+    from visitinfo v
+    <include refid="base_sql"/>
+    ORDER BY publish_date DESC
+    limit #{start},#{pageSize}
+  </select>
+
+  <!--<select id="queryForListDate" resultMap="BaseResultMap">-->
+    <!--SELECT v.id, v.publisher_id, v.begin_date, v.end_date, v.town, v.toplimit, v.version, v.publish_date,-->
+    <!--v.is_Overdue,w.province AS po_province,w.city AS po_city, w.county AS po_county, w.countryside AS po_countryside-->
+    <!--from visitinfo v ,-->
+    <!--(-->
+      <!--SELECT a.id AS id, d.area_name AS province,c.area_name AS city, b.area_name AS county, a.area_name AS countryside FROM-->
+      <!--area a-->
+      <!--LEFT JOIN-->
+      <!--area b ON a.parent_id = b.id-->
+
+      <!--LEFT JOIN-->
+      <!--area c ON b.parent_id = c.id-->
+      <!--LEFT JOIN-->
+      <!--area d    ON c.parent_id = d.id-->
+      <!--WHERE a.id = v.town AND b.id = a.parent_id AND c.id = b.parent_id AND d.id = c.parent_id-->
+    <!--) w-->
+    <!--<include refid="base_sql1"/>-->
+    <!--ORDER BY publish_date DESC-->
+    <!--limit #{start},#{pageSize}-->
+  <!--</select>-->
+</mapper>
