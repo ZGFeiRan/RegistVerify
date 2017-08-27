@@ -9,6 +9,7 @@ import com.feiran.zg.core.base.service.IDoctorInfoService;
 import com.feiran.zg.core.base.service.IRealAuthService;
 import com.feiran.zg.core.base.utils.BitStatesUtils;
 import com.feiran.zg.core.base.utils.UserContext;
+import com.feiran.zg.core.business.event.RealAuthSuccessEvetn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -103,6 +104,9 @@ public class RealAuthServiceImpl implements IRealAuthService {
                     applier.setDoctorName(realAuth.getRealName());// 设置医生的真是姓名
                     applier.setDoctorSex(realAuth.getSex()==1?"男":"女");// 设置医生的性别
 
+                    // 创建实名认证成功对象,并发布实名认证成功这个事件
+                    RealAuthSuccessEvetn evetn = new RealAuthSuccessEvetn(this, realAuth);
+                    publisher.publishEvent(evetn);
 
                 }
 //                this.userInfoService.update(applier);
