@@ -26,12 +26,12 @@
 				$("#currentPage").val(page);
 				$("#searchForm").submit();
 			}
-		});
+		})
 		
 		$("#query").click(function(){
 			$("#currentPage").val(1);
 			$("#searchForm").submit();
-		})
+		});
 		
 		$(".btn_audit").click(function(){
 			var form=$("#editform");

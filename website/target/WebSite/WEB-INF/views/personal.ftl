@@ -113,12 +113,12 @@
 						<div class="panel-body el-account">
 							<div class="el-account-info">
 								<div class="pull-left el-head-img">
-									<img class="icon" src="${doctorInfo.doctorImg}" style="width: 100px;height: 100px;"/>
+									<img class="icon" src="${(doctorInfo.doctorImg)!"尚未完善"}" style="width: 100px;height: 100px;"/>
 								</div>
 								<div class="pull-left el-head">
                                     <table style="width: 100%;height: 100px;">
                                         <tr>
-                                            <td><span>登录账户名：${loginInfo.userName!"尚未完善"}</span></td>
+                                            <td><span>登录账户名：${(loginInfo.userName)!"尚未完善"}</span></td>
 											<td><span style="margin-left: 100px">上次登录时间：${loginInfo.lastLoginDateTime?string('yyyy-MM-dd HH:mm:ss')}</span></td>
 										</tr>
                                         <tr>

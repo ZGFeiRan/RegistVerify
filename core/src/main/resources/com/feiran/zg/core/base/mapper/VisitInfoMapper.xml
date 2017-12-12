@@ -11,8 +11,7 @@
     <result column="version" jdbcType="INTEGER" property="version" />
     <result column="publish_date" jdbcType="TIMESTAMP" property="publishDate" />
     <result column="is_Overdue" jdbcType="INTEGER" property="isOverdue" />
-    <association property="position" column="town" javaType="position"
-                 select="com.feiran.zg.core.base.mapper.PositionMapper.selectByCountryside"/>
+    <association column="town" javaType="position" property="position" select="com.feiran.zg.core.base.mapper.PositionMapper.selectByCountryside" />
     <!--<association property="position" column="town" javaType="position" columnPrefix="po_">-->
       <!--<result column="province" property="province"/>-->
       <!--<result column="city" property="city"/>-->
@@ -141,14 +140,14 @@
   <select id="quetryForCount" resultType="int">
     SELECT COUNT(*)
     FROM visitinfo
-    <include refid="base_sql"/>
+    <include refid="base_sql" />
   </select>
 
   <select id="queryForListDate" resultMap="BaseResultMap">
     SELECT v.id, v.publisher_id, v.begin_date, v.end_date, v.town, v.toplimit, v.version, v.publish_date,
     v.is_Overdue
     from visitinfo v
-    <include refid="base_sql"/>
+    <include refid="base_sql" />
     ORDER BY publish_date DESC
     limit #{start},#{pageSize}
   </select>

@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.feiran.zg.core.base.domain.DoctorInfo" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="doctor_name" property="doctorName" jdbcType="VARCHAR" />
-    <result column="doctor_sex" property="doctorSex" jdbcType="CHAR" />
+    <result column="doctor_sex" property="doctorSex" jdbcType="VARCHAR" />
     <result column="hospital_name" property="hospitalName" jdbcType="VARCHAR" />
     <result column="offices_name" property="officesName" jdbcType="VARCHAR" />
     <result column="doctor_img" property="doctorImg" jdbcType="VARCHAR" />
@@ -28,14 +28,14 @@
       UPDATE doctorinfo SET is_delete = 1
   </delete>
 
-  <insert id="insert" parameterType="com.feiran.zg.core.base.domain.DoctorInfo" useGeneratedKeys="true" keyProperty="id" >
-    insert into doctorinfo (doctor_name, doctor_sex, hospital_name, 
+  <insert id="insert" parameterType="com.feiran.zg.core.base.domain.DoctorInfo">
+    insert into doctorinfo (id,doctor_name, doctor_sex, hospital_name,
       offices_name, doctor_img, doctor_title, 
       teach_title, doctor_administrative, doctor_degree, 
       doctor_forte, email, phone_number, 
       realAuth_id, bit_state, is_delete, 
       doctor_about,version)
-    values (#{doctorName,jdbcType=VARCHAR}, #{doctorSex,jdbcType=CHAR}, #{hospitalName,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT},#{doctorName,jdbcType=VARCHAR}, #{doctorSex,jdbcType=VARCHAR}, #{hospitalName,jdbcType=VARCHAR},
       #{officesName,jdbcType=VARCHAR}, #{doctorImg,jdbcType=VARCHAR}, #{doctorTitle,jdbcType=VARCHAR}, 
       #{teachTitle,jdbcType=VARCHAR}, #{doctorAdministrative,jdbcType=VARCHAR}, #{doctorDegree,jdbcType=VARCHAR}, 
       #{doctorForte,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, 
@@ -47,7 +47,7 @@
     update doctorinfo
       <set>
         <if test="doctorName != null and doctorName!=''">doctor_name = #{doctorName,jdbcType=VARCHAR},</if>
-        <if test="doctorSex != null and doctorSex!=''">doctor_sex = #{doctorSex,jdbcType=CHAR},</if>
+        <if test="doctorSex != null and doctorSex!=''">doctor_sex = #{doctorSex,jdbcType=VARCHAR},</if>
         <if test="hospitalName != null and hospitalName!=''">hospital_name = #{hospitalName,jdbcType=VARCHAR},</if>
         <if test="officesName != null and officesName!=''">offices_name = #{officesName,jdbcType=VARCHAR},</if>
         <if test="doctorImg != null and doctorImg!=''">doctor_img = #{doctorImg,jdbcType=VARCHAR},</if>

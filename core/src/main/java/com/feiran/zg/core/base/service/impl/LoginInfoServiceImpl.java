@@ -54,7 +54,8 @@ public class LoginInfoServiceImpl implements ILoginInfoService {
                 // 创建用户信息
                 DoctorInfo doctorInfo = new DoctorInfo();
                 doctorInfo.setId(loginInfo.getId());// 设置doctorInfo的id和loginInfo的id一直
-                doctorInfoService.insert(doctorInfo);// 入库
+                int insert = doctorInfoService.insert(doctorInfo);// 入库
+                System.out.println(insert);
             }
         }
     }

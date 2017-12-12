@@ -39,7 +39,9 @@ public class PersonalController {
     public String personal(Model model){
         DoctorInfo doctorInfo = doctorInfoService.getCurrent();
         model.addAttribute("doctorInfo",doctorInfo);
-        model.addAttribute("realAuth",this.realAuthService.getById(doctorInfo.getRealAuthId()));
+        if (doctorInfo!=null){
+             model.addAttribute("realAuth",this.realAuthService.getById(doctorInfo.getRealAuthId()));
+        }
         return "personal";
     }
 
